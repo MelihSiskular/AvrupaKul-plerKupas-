@@ -1,24 +1,154 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IOp-S9-NdL">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Avrupa_Kulu_pler_Kupası" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="ZEB-10-JDP"/>
+                    <connections>
+                        <segue destination="WoU-hk-Vyl" kind="show" identifier="toSegueTeamSelect" id="dTY-g5-Qrh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1066.4122137404579" y="-2.1126760563380285"/>
+        </scene>
+        <!--Team Select View Controller-->
+        <scene sceneID="D1R-AG-Lgy">
+            <objects>
+                <viewController id="WoU-hk-Vyl" customClass="TeamSelectViewController" customModule="Avrupa_Kulu_pler_Kupası" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ngA-3G-CHj">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Pzc-s3-HbB">
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="133" id="NIv-9t-556" customClass="TableViewCell" customModule="Avrupa_Kulu_pler_Kupası" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="133"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NIv-9t-556" id="Nnq-ic-hWi">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="133"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Takım İsmi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKm-55-ocx">
+                                                    <rect key="frame" x="20" y="0.0" width="334" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="334" id="CMI-xt-XYa"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a1U-4N-ZsQ">
+                                                    <rect key="frame" x="20" y="43" width="70" height="70"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="70" id="MFJ-8K-fhP"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Atak - OrtaSaha - Defans" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSg-bA-eaI">
+                                                    <rect key="frame" x="98" y="92" width="288" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="288" id="7nq-8M-GpI"/>
+                                                        <constraint firstAttribute="height" constant="21" id="idO-bV-BLo"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="a1U-4N-ZsQ" firstAttribute="top" secondItem="QKm-55-ocx" secondAttribute="bottom" constant="8" id="9II-zo-1dk"/>
+                                                <constraint firstItem="PSg-bA-eaI" firstAttribute="leading" secondItem="a1U-4N-ZsQ" secondAttribute="trailing" constant="8" id="BdM-UE-dcy"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="a1U-4N-ZsQ" secondAttribute="bottom" constant="9" id="GVX-dW-3V8"/>
+                                                <constraint firstItem="QKm-55-ocx" firstAttribute="leading" secondItem="a1U-4N-ZsQ" secondAttribute="leading" id="Mya-3U-ctm"/>
+                                                <constraint firstItem="a1U-4N-ZsQ" firstAttribute="bottom" secondItem="PSg-bA-eaI" secondAttribute="bottom" id="ZEd-p5-9jO"/>
+                                                <constraint firstItem="QKm-55-ocx" firstAttribute="leading" secondItem="Nnq-ic-hWi" secondAttribute="leadingMargin" id="hCt-BN-icn"/>
+                                                <constraint firstItem="PSg-bA-eaI" firstAttribute="top" secondItem="QKm-55-ocx" secondAttribute="bottom" constant="57" id="hrt-he-DzP"/>
+                                                <constraint firstItem="QKm-55-ocx" firstAttribute="top" secondItem="Nnq-ic-hWi" secondAttribute="topMargin" constant="-11" id="lwA-cj-UYZ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="teamFeatures" destination="PSg-bA-eaI" id="N54-wa-JH0"/>
+                                            <outlet property="teamImage" destination="a1U-4N-ZsQ" id="7yO-bV-1Qx"/>
+                                            <outlet property="teamName" destination="QKm-55-ocx" id="Dbd-Qb-DAU"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="lW6-Qp-0SW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Pzc-s3-HbB" firstAttribute="centerX" secondItem="ngA-3G-CHj" secondAttribute="centerX" id="QbE-0b-MWz"/>
+                            <constraint firstItem="Pzc-s3-HbB" firstAttribute="top" secondItem="lW6-Qp-0SW" secondAttribute="top" id="l3r-LP-JAG"/>
+                            <constraint firstItem="Pzc-s3-HbB" firstAttribute="leading" secondItem="lW6-Qp-0SW" secondAttribute="leading" id="rpA-9y-peg"/>
+                            <constraint firstItem="Pzc-s3-HbB" firstAttribute="bottom" secondItem="lW6-Qp-0SW" secondAttribute="bottom" id="tZS-Rp-Nxg"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Fkq-xc-jkG"/>
+                    <connections>
+                        <outlet property="tableView" destination="Pzc-s3-HbB" id="Axw-Pi-rCX"/>
+                        <segue destination="sBx-9V-hKR" kind="show" identifier="toGame" id="n6D-NL-DYX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l9J-5v-hjE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1887.7862595419847" y="-2.1126760563380285"/>
+        </scene>
+        <!--Game View Controller-->
+        <scene sceneID="l7T-53-sfv">
+            <objects>
+                <viewController id="sBx-9V-hKR" customClass="GameViewController" customModule="Avrupa_Kulu_pler_Kupası" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BdB-Ka-M7S">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="ATo-1k-DD4"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="fho-Ta-ZWe"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WaQ-Xh-s8B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2671" y="-2"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="2p3-DO-obo">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IOp-S9-NdL" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FvF-fl-hlW">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="hVJ-dt-J22"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mmO-nD-x5b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139.69465648854961" y="-2.1126760563380285"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
