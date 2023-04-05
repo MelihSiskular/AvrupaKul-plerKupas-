@@ -15,8 +15,15 @@ class TeamSelectViewController: UIViewController,UITableViewDelegate,UITableView
     ///Bunlardan kendi takımımızı seçeceğiz
     ///TableView üzerinde gözükecek
     var teamArray = [String]()
+    
+    ///Takım Güçlerini daha doğru olması için Fifa23 üzerinden alıyorum
     var teamPower = [String]()
     
+    ///Her bir cell'e tıklanınca segue işlemi olacak
+    ///Karşıdaki Değerleri ile eşleşmesi için böyle kullanıyorum
+    var selectTeamName = ""
+    var selectTeamPower = ""
+    var selectTeamLogo = UIImage()
     
   @IBOutlet var tableView: UITableView!
     
@@ -30,7 +37,7 @@ class TeamSelectViewController: UIViewController,UITableViewDelegate,UITableView
         navigationController?.navigationBar.topItem?.backButtonTitle = "Geri"
         
         
-        ///Takım ismi ve logo için tableViewCellere bilgi buradan gelecek
+        ///Takım ismi, logo ve takım güçleri  için tableViewCellere bilgi buradan gelecek
         teamArray.append("Arsenal")
         teamPower.append("Atak: 82 - Orta Saha: 84 - Defans: 80")
         
@@ -97,7 +104,21 @@ class TeamSelectViewController: UIViewController,UITableViewDelegate,UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        selectTeamName = teamArray[indexPath.row]
+        selectTeamPower = teamPower[indexPath.row]
+        selectTeamLogo = UIImage(named: teamArray[indexPath.row])!
+        
         performSegue(withIdentifier: "toGame", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toGame" {
+            let destination = segue.destination as! GameViewController
+            destination.choosenTeamName = selectTeamName
+            destination.choosenTeamPower = selectTeamPower
+            destination.choosenTeamLogo = selectTeamLogo
+        }
     }
     
 }

@@ -118,14 +118,47 @@
                     <view key="view" contentMode="scaleToFill" id="BdB-Ka-M7S">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="AtT-lo-qgQ">
+                                <rect key="frame" x="16" y="236" width="361" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.40000000000000002" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <segments>
+                                    <segment title="3-4-3"/>
+                                    <segment title="3-5-2"/>
+                                    <segment title="4-4-2"/>
+                                    <segment title="4-3-3"/>
+                                    <segment title="4-2-3-1"/>
+                                    <segment title="5-3-2"/>
+                                </segments>
+                                <connections>
+                                    <action selector="didChangeSegment:" destination="sBx-9V-hKR" eventType="valueChanged" id="d88-8y-Olf"/>
+                                </connections>
+                            </segmentedControl>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="HMq-2d-szR">
+                                <rect key="frame" x="130" y="557" width="118" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.40000000000000002" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="582-mF-G3h">
+                                <rect key="frame" x="130" y="494" width="118" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </slider>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="ATo-1k-DD4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="fho-Ta-ZWe"/>
+                    <connections>
+                        <outlet property="segmentControlOutlet" destination="AtT-lo-qgQ" id="KON-lL-Y7U"/>
+                        <outlet property="sliderAttack" destination="582-mF-G3h" id="Os0-ji-N82"/>
+                        <outlet property="sliderDefense" destination="HMq-2d-szR" id="XK8-eP-IYH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WaQ-Xh-s8B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2671" y="-2"/>
+            <point key="canvasLocation" x="2669.4656488549617" y="-2.1126760563380285"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2p3-DO-obo">

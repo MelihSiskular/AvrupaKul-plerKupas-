@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     
     //MARK: Tanımlar
     
+ 
   
     let imageLogo = UIImageView()
     
@@ -45,7 +46,7 @@ class ViewController: UIViewController {
         view.addSubview(startButton)
         startButton.addTarget(self, action: #selector(tapStartButton), for: UIControl.Event.touchUpInside)
         
-        
+       
         
     }
     
