@@ -171,7 +171,7 @@
         <scene sceneID="630-Qq-gCO">
             <objects>
                 <viewController id="FGF-uZ-JBq" customClass="FixtureViewController" customModule="Avrupa_Kulu_pler_Kupası" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="qKA-jm-oX6">
+                    <view key="view" contentMode="scaleAspectFill" id="qKA-jm-oX6">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="IaE-bW-Cgx"/>

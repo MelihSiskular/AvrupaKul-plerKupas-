@@ -24,6 +24,32 @@ class GameViewController: UIViewController {
     var teamColorFirst = ""
     var teamColorSecond = ""
     
+    ///Her takımın kendi class'ı var
+    ///Eğer kendine uygun olan diziliş ve hğcum-defans ağırlığını seçtiyse gücünde artış meydana gelcek
+    ///Eğer ki kendine en uygun olmayan diziliişi ve hücum-defans ağırlığını seçerse düşüş olacak
+    ///Şuan 0 başlatıyorum bunlar slider ve segment üzerindeki değişikliklere göre değişecek!
+    ///En son segue işlemi olurken çağrılcak ve sınıf üzerinde değişecek, Kontrollerde ozaman belli olcak!
+    var tacticsBonusAttack = 0
+    var tacticsBonusPlan = 0
+    
+    
+    ///SliderPointler
+    ///Her Takımın kendine göre özel sliderı ve kötü sliderı var ancak;
+    ///Her ihtimalde oyunumuza göre özel puanlar kazanmamız gerek!
+    ///Attack değeri üzerinden gideceğim
+    ///BU DEĞERLER TAKIMIN ATACK-MİD-DEFANS değerlerine eklencek!
+    var sliderPointsAttack = 0
+    var sliderPoinstDefense = 0
+    
+    ///SegmentPointler
+    ///Her takımın kendine özel Taktik planı iyi ve kötü etkileyecek şekilde var
+    ///Ancak bizim dizilişimizin de belli avantajları olmalı, az da olsa
+    ///BU DEĞERLER TAKIMIN ATACK-MİD-DEFANS değerlerine eklencek!
+    ///MAX (5) MİN (-5) Değerleri alır
+    var segmentPointAttack = 0
+    var segmentPointDefense = 0
+    var segmentPointMid = 0
+    
     
     ///TableViewdan tıklanınca bu veriler ile eşlenip bu verilerden gösterme işlemi yapacaığız.
     var choosenTeamName = ""
@@ -45,7 +71,7 @@ class GameViewController: UIViewController {
     ///Slider'da Value Görünüm
     let sliderControlAttackLabel = UILabel()
     let sliderControlDefenseLabel = UILabel()
-    let selectedTactics = ""
+    
     
     
     //MARK: ViewDidLoad
@@ -117,7 +143,7 @@ class GameViewController: UIViewController {
         TeamPower.font = UIFont(name: "Kefa", size: 14)
         view.addSubview(TeamPower)
         
-        nextButton.setTitle("Fikstür", for: UIControl.State.normal)
+        nextButton.setTitle("Grup Aşaması", for: UIControl.State.normal)
         nextButton.setTitleColor(choosenTeamColor[1], for: UIControl.State.normal)
         nextButton.setTitleColor(choosenTeamColor[1], for: UIControl.State.highlighted)
         nextButton.setTitle("--->", for: UIControl.State.highlighted)
@@ -125,6 +151,7 @@ class GameViewController: UIViewController {
         nextButton.backgroundColor = choosenTeamColor[0]
         nextButton.addTarget(self, action: #selector(nextButtonClicked), for: UIControl.Event.touchUpInside)
         view.addSubview(nextButton)
+        
     }
     
     
@@ -135,40 +162,59 @@ class GameViewController: UIViewController {
     
         switch sender.selectedSegmentIndex {
         case 0:
-            print("0")
+            
             tacticsImage.image = UIImage(named: "3-4-3")
             tacticsLabel.font = UIFont(name: "Kefa", size: 14)
             tacticsLabel.text = "3-4-3 Taktiği Hakkında bilgi olcak"
+            segmentPointAttack = 4
+            segmentPointMid = 2
+            segmentPointDefense = -4
             
         case 1:
-            print("1")
+            
             tacticsImage.image = UIImage(named: "3-5-2")
             tacticsLabel.font = UIFont(name: "Kefa", size: 14)
             tacticsLabel.text = "3-5-2 Taktiği Hakkında bilgi olcak"
+            segmentPointAttack = 3
+            segmentPointMid = 3
+            segmentPointDefense = -1
         
         case 2:
-            print("2")
+         
             tacticsImage.image = UIImage(named: "4-4-2")
             tacticsLabel.font = UIFont(name: "Kefa", size: 14)
             tacticsLabel.text = "4-4-2 Taktiği Hakkında bilgi olcak"
+            segmentPointAttack = 1
+            segmentPointMid = 2
+            segmentPointDefense = 1
             
         case 3:
-            print("3")
+            
             tacticsImage.image = UIImage(named: "4-3-3")
             tacticsLabel.font = UIFont(name: "Kefa", size: 14)
             tacticsLabel.text = "4-3-3 Taktiği Hakkında bilgi olcak"
+            segmentPointAttack = 2
+            segmentPointMid = 2
+            segmentPointDefense = 0
         
         case 4:
-            print("4")
+        
             tacticsImage.image = UIImage(named: "4-2-3-1")
             tacticsLabel.font = UIFont(name: "Kefa", size: 14)
             tacticsLabel.text = "4-2-3-1 Taktiği Hakkında bilgi olcak"
+            segmentPointAttack = 2
+            segmentPointMid = 2
+            segmentPointDefense = 2
+            
             
         case 5:
-            print("5")
+           
             tacticsImage.image = UIImage(named: "5-3-2")
             tacticsLabel.font = UIFont(name: "Kefa", size: 14)
             tacticsLabel.text = "5-3-2 Taktiği Hakkında bilgi olcak"
+            segmentPointAttack = -3
+            segmentPointMid = 3
+            segmentPointDefense = 4
             
         default:
             print("Açıldı")
@@ -177,7 +223,14 @@ class GameViewController: UIViewController {
         
     }
     
+    
+    //Slider İşlemleri
     @IBAction func sliderAttackFunc(_ sender: UISlider) {
+        ///Class için değer gönderirken attacktan veya defanstan seçerse diye 2 türlü de düşün
+        ///Eğer ataktan kaydırırsa direk o değer
+        ///Ama defanstan seçerse 20 - x olarak eşitle
+    
+        
         
         var sliderValue = Int(sliderAttack.value)
         var sliderDefenseValue = 20 - sliderValue
@@ -186,6 +239,19 @@ class GameViewController: UIViewController {
         sliderControlDefenseLabel.text! = "Defans Ağırlığı %\(sliderDefenseValue * 5)"
         sliderControlAttackLabel.text! = "Hücum Ağırlığı %\(sliderValue * 5)"
         
+        if sliderValue > 10 {
+            //Hücum Ağırlıklı
+            sliderPointsAttack = (sliderValue - 10) //Hücumumuz + alcak
+            sliderPoinstDefense = (sliderDefenseValue - 10) //Defansımız - Alcak
+            
+        }else if sliderValue == 10 {
+            //Dengede oyun tercih edildi!
+        }else {
+            //Defans Ağırlıklı
+            sliderPointsAttack = (sliderValue - 10) //Hücumumuz - Alcak
+            sliderPoinstDefense = (sliderDefenseValue - 10) // Defansımız + Alcak
+            
+        }
     }
     
     
@@ -198,25 +264,56 @@ class GameViewController: UIViewController {
         sliderControlDefenseLabel.text! = "Defans Ağırlığı %\(sliderValue * 5)"
         sliderControlAttackLabel.text! = "Hücum Ağırlığı %\(sliderAttackValue * 5)"
         
+        if sliderValue > 10 {
+            //Defans Ağırlıklı
+            sliderPointsAttack = (sliderAttackValue - 10) //Hücumumuz - alcak
+            sliderPoinstDefense = (sliderValue - 10) //Defansımız + Alcak
+            
+        }else if sliderValue == 10 {
+            //Dengede oyun tercih edildi!
+        }else {
+            //Hücum Ağırlıklı
+            sliderPointsAttack = (sliderAttackValue - 10) //Hücumumuz + Alcak
+            sliderPoinstDefense = (sliderValue - 10) // Defansımız - Alcak
+            
+        }
+        
+        
+       
+        
     }
+    
+    //MARK: Segue ve Hazırlık
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toMatchFixture" {
             let destination = segue.destination as! FixtureViewController
             
+            if destination.myTeam == "" {
+                destination.myTeam = choosenTeamName
+                
+            }
+           
+            
         }
     }
+    
+    func makeAlert(title: String,message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        let button = UIAlertAction(title: "Tamam", style: UIAlertAction.Style.cancel)
+        alert.addAction(button)
+        self.present(alert, animated: true)
+    }
+    
     
     @objc
     func nextButtonClicked() {
         
         performSegue(withIdentifier: "toMatchFixture", sender: nil)
+       
+        
         
     }
-    
-    
-    
-    
     
     
     

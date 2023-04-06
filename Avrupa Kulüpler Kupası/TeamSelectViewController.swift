@@ -24,7 +24,7 @@ class TeamSelectViewController: UIViewController,UITableViewDelegate,UITableView
     ///Her takım için biri ana renk olmak üzere 2 rengi olacak
     var teamColor = [[UIColor]]()
     
-    
+
     
     ///Her bir cell'e tıklanınca segue işlemi olacak
     ///Karşıdaki Değerleri ile eşleşmesi için böyle kullanıyorum
@@ -47,7 +47,7 @@ class TeamSelectViewController: UIViewController,UITableViewDelegate,UITableView
         
 
         
-        ///Takım ismi, logo ve takım güçleri  için tableViewCellere bilgi buradan gelecek
+        ///Takım ismi, logo,renkleri ve takım güçleri  için tableViewCellere bilgi buradan gelecek
         teamArray.append("Arsenal")
         teamPower.append("Atak: 82 - Orta Saha: 84 - Defans: 80")
         teamColor.append([UIColor(red: 1, green: 0.1491002738, blue: 0, alpha: 1),UIColor(red: 0.003236678662, green: 0.07242403179, blue: 0.4763430357, alpha: 1)])
