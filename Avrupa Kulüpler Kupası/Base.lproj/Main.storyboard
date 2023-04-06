@@ -139,11 +139,17 @@
                                 <rect key="frame" x="130" y="557" width="118" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.40000000000000002" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="sliderDefenseFunc:" destination="sBx-9V-hKR" eventType="valueChanged" id="2Vv-U7-uN8"/>
+                                </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="582-mF-G3h">
                                 <rect key="frame" x="130" y="494" width="118" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="sliderAttackFunc:" destination="sBx-9V-hKR" eventType="valueChanged" id="ccO-s6-eZo"/>
+                                </connections>
                             </slider>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ATo-1k-DD4"/>
@@ -154,11 +160,28 @@
                         <outlet property="segmentControlOutlet" destination="AtT-lo-qgQ" id="KON-lL-Y7U"/>
                         <outlet property="sliderAttack" destination="582-mF-G3h" id="Os0-ji-N82"/>
                         <outlet property="sliderDefense" destination="HMq-2d-szR" id="XK8-eP-IYH"/>
+                        <segue destination="FGF-uZ-JBq" kind="show" identifier="toMatchFixture" id="d1j-l5-jrQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WaQ-Xh-s8B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2669.4656488549617" y="-2.1126760563380285"/>
+            <point key="canvasLocation" x="2720" y="-2"/>
+        </scene>
+        <!--Fixture View Controller-->
+        <scene sceneID="630-Qq-gCO">
+            <objects>
+                <viewController id="FGF-uZ-JBq" customClass="FixtureViewController" customModule="Avrupa_Kulu_pler_Kupası" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qKA-jm-oX6">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="IaE-bW-Cgx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="9rg-ug-zey"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QmP-Rb-Puq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3490.8396946564885" y="-2.1126760563380285"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2p3-DO-obo">

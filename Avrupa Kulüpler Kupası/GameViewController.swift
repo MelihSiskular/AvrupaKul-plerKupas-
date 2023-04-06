@@ -15,17 +15,22 @@ class GameViewController: UIViewController {
     
     @IBOutlet var sliderAttack: UISlider!
     @IBOutlet var sliderDefense: UISlider!
-    
     @IBOutlet var segmentControlOutlet: UISegmentedControl!
     
     ///Next button olarak işlev görecek ve fikstür'e geçecek
     let nextButton = UIButton()
+    
+    ///Takım Renkler için ana renk ve ikinci Renk
+    var teamColorFirst = ""
+    var teamColorSecond = ""
     
     
     ///TableViewdan tıklanınca bu veriler ile eşlenip bu verilerden gösterme işlemi yapacaığız.
     var choosenTeamName = ""
     var choosenTeamPower = ""
     var choosenTeamLogo = UIImage()
+    var choosenTeamColor = [UIColor]()
+    
 
     ///TableView dan gelen veriler bunlar üzerinde ekranın üstünde gösterilir
     let TeamImage = UIImageView()
@@ -37,15 +42,20 @@ class GameViewController: UIViewController {
     let tacticsImage = UIImageView()
     let tacticsLabel = UILabel()
     
-    ///Slider'da Value değişimi sonucu kullanacaklarımız!
+    ///Slider'da Value Görünüm
     let sliderControlAttackLabel = UILabel()
     let sliderControlDefenseLabel = UILabel()
-    
     let selectedTactics = ""
+    
     
     //MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+     
+        
+        
+        
         
         let width = view.frame.size.width
         let height = view.frame.size.height
@@ -67,22 +77,27 @@ class GameViewController: UIViewController {
         tacticsLabel.numberOfLines = 6
         view.addSubview(tacticsLabel)
         
+        segmentControlOutlet.backgroundColor = choosenTeamColor[0]
         segmentControlOutlet.frame = CGRect(x: width * 0.5 - (width * 0.95)/2, y: height * 0.32, width: width * 0.95, height: height * 0.05)
 
-        navigationController?.navigationBar.topItem?.backButtonTitle = "Geri"
+        navigationController?.navigationBar.topItem?.backButtonTitle = "Takım Seçimine Dön"
        
-        sliderControlAttackLabel.text = "Hücum Ağırlığı"
-        sliderControlDefenseLabel.text = "Defans Ağırlığı"
+        sliderControlAttackLabel.text = "Hücum Ağırlığı %50"
+        sliderControlDefenseLabel.text = "Defans Ağırlığı %50"
         sliderControlAttackLabel.font = UIFont(name: "Futura", size: 19)
         sliderControlDefenseLabel.font = UIFont(name: "Futura", size: 19)
         sliderControlAttackLabel.frame = CGRect(x: width * 0.07, y: height * 0.628, width: width * 0.5, height: height * 0.06)
         sliderControlDefenseLabel.frame = CGRect(x: width * 0.07, y: height * 0.76, width: width * 0.5, height: height * 0.06)
+        sliderAttack.tintColor = choosenTeamColor[0]
+        sliderDefense.tintColor = choosenTeamColor[1]
         view.addSubview(sliderControlAttackLabel)
         view.addSubview(sliderControlDefenseLabel)
         
         
         sliderAttack.frame = CGRect(x: width * 0.5 - (width * 0.9)/2, y: height * 0.65, width: width * 0.9, height: height * 0.1)
         sliderDefense.frame = CGRect(x: width * 0.5 - (width * 0.9)/2, y: height * 0.775, width: width * 0.9, height: height * 0.1)
+        sliderAttack.value = 10
+        sliderDefense.value = 10
         
         
         TeamName.text = choosenTeamName
@@ -103,16 +118,17 @@ class GameViewController: UIViewController {
         view.addSubview(TeamPower)
         
         nextButton.setTitle("Fikstür", for: UIControl.State.normal)
-        nextButton.setTitleColor(UIColor.tintColor, for: UIControl.State.normal)
-        nextButton.setTitleColor(UIColor.blue, for: UIControl.State.highlighted)
+        nextButton.setTitleColor(choosenTeamColor[1], for: UIControl.State.normal)
+        nextButton.setTitleColor(choosenTeamColor[1], for: UIControl.State.highlighted)
         nextButton.setTitle("--->", for: UIControl.State.highlighted)
-        nextButton.frame = CGRect(x: width * 0.5 - (width * 0.8)/2, y: height * 0.88, width: width * 0.8, height: height * 0.1)
+        nextButton.frame = CGRect(x: width * 0.5 - (width * 0.8)/2, y: height * 0.9, width: width * 0.8, height: height * 0.055)
+        nextButton.backgroundColor = choosenTeamColor[0]
+        nextButton.addTarget(self, action: #selector(nextButtonClicked), for: UIControl.Event.touchUpInside)
         view.addSubview(nextButton)
     }
     
     
     //MARK: FUNCTİONS
-    
     
     //SegmentedControl
     @IBAction func didChangeSegment(_ sender: UISegmentedControl) {
@@ -160,6 +176,46 @@ class GameViewController: UIViewController {
         }
         
     }
+    
+    @IBAction func sliderAttackFunc(_ sender: UISlider) {
+        
+        var sliderValue = Int(sliderAttack.value)
+        var sliderDefenseValue = 20 - sliderValue
+        sliderDefense.value = Float(sliderDefenseValue)
+        
+        sliderControlDefenseLabel.text! = "Defans Ağırlığı %\(sliderDefenseValue * 5)"
+        sliderControlAttackLabel.text! = "Hücum Ağırlığı %\(sliderValue * 5)"
+        
+    }
+    
+    
+    @IBAction func sliderDefenseFunc(_ sender: UISlider) {
+        
+        var sliderValue = Int(sliderDefense.value)
+        var sliderAttackValue = 20 - sliderValue
+        sliderAttack.value = Float(sliderAttackValue)
+        
+        sliderControlDefenseLabel.text! = "Defans Ağırlığı %\(sliderValue * 5)"
+        sliderControlAttackLabel.text! = "Hücum Ağırlığı %\(sliderAttackValue * 5)"
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toMatchFixture" {
+            let destination = segue.destination as! FixtureViewController
+            
+        }
+    }
+    
+    @objc
+    func nextButtonClicked() {
+        
+        performSegue(withIdentifier: "toMatchFixture", sender: nil)
+        
+    }
+    
+    
+    
     
     
     

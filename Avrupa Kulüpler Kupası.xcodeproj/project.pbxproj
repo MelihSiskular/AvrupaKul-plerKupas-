@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D73EA74929DECE3F00A22DAC /* FixtureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73EA74829DECE3F00A22DAC /* FixtureViewController.swift */; };
 		D7EFE0DE29DCBCB7005C1BEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFE0DD29DCBCB7005C1BEC /* AppDelegate.swift */; };
 		D7EFE0E029DCBCB7005C1BEC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFE0DF29DCBCB7005C1BEC /* SceneDelegate.swift */; };
 		D7EFE0E229DCBCB7005C1BEC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFE0E129DCBCB7005C1BEC /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D73EA74829DECE3F00A22DAC /* FixtureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureViewController.swift; sourceTree = "<group>"; };
 		D7EFE0DA29DCBCB7005C1BEC /* Avrupa Kulüpler Kupası.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Avrupa Kulüpler Kupası.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7EFE0DD29DCBCB7005C1BEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7EFE0DF29DCBCB7005C1BEC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				D7EFE0E129DCBCB7005C1BEC /* ViewController.swift */,
 				D7EFE0F429DCCDC8005C1BEC /* TeamSelectViewController.swift */,
 				D7EFE0F829DCDD61005C1BEC /* GameViewController.swift */,
+				D73EA74829DECE3F00A22DAC /* FixtureViewController.swift */,
 				D7EFE0F629DCD102005C1BEC /* TableViewCell.swift */,
 				D7EFE0E329DCBCB7005C1BEC /* Main.storyboard */,
 				D7EFE0E929DCBCB9005C1BEC /* Assets.xcassets */,
@@ -154,6 +157,7 @@
 				D7EFE0E229DCBCB7005C1BEC /* ViewController.swift in Sources */,
 				D7EFE0DE29DCBCB7005C1BEC /* AppDelegate.swift in Sources */,
 				D7EFE0F529DCCDC8005C1BEC /* TeamSelectViewController.swift in Sources */,
+				D73EA74929DECE3F00A22DAC /* FixtureViewController.swift in Sources */,
 				D7EFE0F729DCD102005C1BEC /* TableViewCell.swift in Sources */,
 				D7EFE0E029DCBCB7005C1BEC /* SceneDelegate.swift in Sources */,
 				D7EFE0E829DCBCB7005C1BEC /* Avrupa_Kulu_pler_Kupas_.xcdatamodeld in Sources */,
