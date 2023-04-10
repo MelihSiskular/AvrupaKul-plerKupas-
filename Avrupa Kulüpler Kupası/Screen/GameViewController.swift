@@ -150,6 +150,7 @@ class GameViewController: UIViewController {
         nextButton.frame = CGRect(x: width * 0.5 - (width * 0.8)/2, y: height * 0.9, width: width * 0.8, height: height * 0.055)
         nextButton.backgroundColor = choosenTeamColor[0]
         nextButton.addTarget(self, action: #selector(nextButtonClicked), for: UIControl.Event.touchUpInside)
+        nextButton.layer.cornerRadius = 12
         view.addSubview(nextButton)
         
     }
@@ -291,6 +292,7 @@ class GameViewController: UIViewController {
             
             if destination.myTeam == "" {
                 destination.myTeam = choosenTeamName
+                destination.myTeamColors = choosenTeamColor
                 
             }
            

@@ -24,10 +24,20 @@ class FixtureViewController: UIViewController {
     ///Seçtiğimiz Takım Hangi grup içinde olduğunu öğrencez
     var myGroup = ""
     
-    ///İlk önce Grubumuzdaki Maçların fikstürü belli olacak
+    ///Grubumuzdaki Maçların fikstürü belli olacak
     var match1 = ""
     var match2 = ""
     var match3 = ""
+    
+    
+    ///Kendi Takım Renklerimiz gameViewScreen üzerinden gelecek
+    var myTeamColors = [UIColor]()
+    
+    ///Grup Aşamasında maçların oynanması için başka ekran götüren butonlar
+    var buttonMatch1 = UIButton()
+    var buttonMatch2 = UIButton()
+    var buttonMatch3 = UIButton()
+    
     
 
     ///16 tane takımdan 4'erli 4 tane grup olcak
@@ -60,6 +70,11 @@ class FixtureViewController: UIViewController {
     var matchLabel2 = UILabel()
     var matchLabel3 = UILabel()
     
+    ///Eğer grup aşaması başarı ile tamamlanırsa Çeyrek finale gidececk buton
+    var goQuarterFinals = UIButton()
+    
+    ///Grup Aşamasının altında  bir açıklama
+    var guideLabel = UILabel()
 
     
     
@@ -160,6 +175,31 @@ class FixtureViewController: UIViewController {
        
         
         matchLabel3.frame = CGRect(x: width * 0.05, y: height * 0.737, width: width * 0.7, height: height * 0.052)
+        
+        buttonMatch1.setTitle("Oyna", for: UIControl.State.normal)
+        buttonMatch1.setTitle("--->", for: UIControl.State.highlighted)
+        buttonMatch1.setTitleColor(UIColor.black, for: UIControl.State.normal)
+        
+        buttonMatch2.setTitle("Oyna", for: UIControl.State.normal)
+        buttonMatch2.setTitle("--->", for: UIControl.State.highlighted)
+        buttonMatch2.setTitleColor(UIColor.black, for: UIControl.State.normal)
+        
+        buttonMatch3.setTitle("Oyna", for: UIControl.State.normal)
+        buttonMatch3.setTitle("--->", for: UIControl.State.highlighted)
+        buttonMatch3.setTitleColor(UIColor.black, for: UIControl.State.normal)
+        
+        buttonMatch1.frame = CGRect(x: width * 0.8, y: height * 0.507, width: width * 0.16, height: height * 0.04)
+        
+       
+        buttonMatch2.frame = CGRect(x: width * 0.8, y: height * 0.625, width: width * 0.16, height: height * 0.04)
+        
+       
+        buttonMatch3.frame = CGRect(x: width * 0.8, y: height * 0.742, width: width * 0.16, height: height * 0.04)
+        
+        buttonMatch2.alpha = 0.5
+        buttonMatch3.alpha = 0.5
+        buttonMatch2.isUserInteractionEnabled = false
+        buttonMatch3.isUserInteractionEnabled = false
       
         groupFirstAverage.font = UIFont(name: "Futura", size: 19)
         groupSecondAverage.font = UIFont(name: "Futura", size: 19)
@@ -184,6 +224,26 @@ class FixtureViewController: UIViewController {
         groupNameLabel.textAlignment = .left
         groupNameLabel.font = UIFont(name: "Impact", size: 22)
         
+        goQuarterFinals.setTitle("Çeyrek Finallere Git", for: UIControl.State.normal)
+        goQuarterFinals.setTitle("--->", for: UIControl.State.highlighted)
+        goQuarterFinals.backgroundColor = .systemGray5
+        goQuarterFinals.frame = CGRect(x: width * 0.5 - (width * 0.8)/2, y: height * 0.9, width: width * 0.8, height: height * 0.055)
+        goQuarterFinals.setTitleColor(.black, for: UIControl.State.normal)
+        goQuarterFinals.alpha = 0.5
+        goQuarterFinals.isUserInteractionEnabled = false
+        goQuarterFinals.layer.cornerRadius = 12
+        
+        guideLabel.frame = CGRect(x: width * 0.5 - (width * 0.9)/2, y: height * 0.8, width: width * 0.9, height: height * 0.1)
+        guideLabel.text = "Eğer Grup Aşamasını ilk iki sırada tamamlarsanız Çeyrek Final Aşamasına geçebileceksiniz! "
+        guideLabel.textAlignment = .center
+        guideLabel.font = UIFont(name: "Futura", size: 15)
+        guideLabel.numberOfLines = 3
+       
+       
+        buttonMatch1.addTarget(self, action: #selector(goToMatch1), for: UIControl.Event.touchUpInside)
+        buttonMatch2.addTarget(self, action: #selector(goToMatch2), for: UIControl.Event.touchUpInside)
+        buttonMatch3.addTarget(self, action: #selector(goToMatch3), for: UIControl.Event.touchUpInside)
+        
         view.addSubview(groupNameLabel)
         view.addSubview(groupFirstPosition)
         view.addSubview(groupSecondPosition)
@@ -200,8 +260,11 @@ class FixtureViewController: UIViewController {
         view.addSubview(matchLabel1)
         view.addSubview(matchLabel2)
         view.addSubview(matchLabel3)
-        
-        
+        view.addSubview(buttonMatch1)
+        view.addSubview(buttonMatch2)
+        view.addSubview(buttonMatch3)
+        view.addSubview(goQuarterFinals)
+        view.addSubview(guideLabel)
        
         groupFirstPosition.text = myTeam
         randomGroups()
@@ -214,11 +277,52 @@ class FixtureViewController: UIViewController {
         
     }
     
-    
-    
     //MARK: FUNC
     
+    @objc
+    func goToMatch1() {
+        
+        performSegue(withIdentifier: "toMatch1", sender: nil)
+        
+    }
+    
+    @objc
+    func goToMatch2() {
+        
+        performSegue(withIdentifier: "toMatch2", sender: nil)
+        
+    }
+    
+    @objc
+    func goToMatch3() {
+        
+        performSegue(withIdentifier: "toMatch3", sender: nil)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toMatch1" {
+            
+            let destination = segue.destination as! Match1ViewController
+            destination.matchText = match1
+            
+        }
+        else if segue.identifier == "toMatch2" {
+            
+            let destination = segue.destination as! Match2ViewController
+          
+            
+        }
+        else if segue.identifier == "toMatch3" {
+            
+            let destination = segue.destination as! Match3ViewController
+            
+        }
+    }
+    
     func randomGroups() {
+        
+        let shared = GroupStages.shared
         
         //Rastgele gruplara Ayrılacak!
         teams.shuffle()
@@ -228,14 +332,18 @@ class FixtureViewController: UIViewController {
             teams.remove(at: teams.count - 1)
             if groupA.count < 4 {
                 groupA.append(randomteam)
+                shared.groupA.append(randomteam)
             }else {
                 if groupB.count < 4 {
                     groupB.append(randomteam)
+                    shared.groupB.append(randomteam)
                 }else {
                     if groupC.count < 4 {
                         groupC.append(randomteam)
+                        shared.groupC.append(randomteam)
                     }else {
                         groupD.append(randomteam)
+                        shared.groupD.append(randomteam)
                     }
                 }
             }
@@ -275,6 +383,7 @@ class FixtureViewController: UIViewController {
     
     func fixture() {
         //Hangi grupta isek o gruptakilerle fikstür belirleyen fonksiyon
+        //Aynı zamanda diğer gruplardaki sıralamayı da belirler
         
         if myGroup == "A Grubu" {
             if groupA.contains(myTeam) {
@@ -301,7 +410,7 @@ class FixtureViewController: UIViewController {
                 matchLabel2.text = match2
                 matchLabel3.text = match3
                 
-                
+                exceptAotherGruopLeaders()
                 
                 
             }
@@ -332,6 +441,7 @@ class FixtureViewController: UIViewController {
                 print(match2)
                 print(match3)
                 
+                exceptBotherGruopLeaders()
                 
             }
             
@@ -362,6 +472,7 @@ class FixtureViewController: UIViewController {
                 matchLabel2.text = match2
                 matchLabel3.text = match3
                 
+                exceptCotherGruopLeaders()
                 
             }
             
@@ -390,6 +501,7 @@ class FixtureViewController: UIViewController {
                 matchLabel2.text = match2
                 matchLabel3.text = match3
                 
+                exceptDotherGruopLeaders()
             }
         }
         
@@ -459,6 +571,90 @@ class FixtureViewController: UIViewController {
         }
     }
     
+    func exceptAotherGruopLeaders() {
+        
+        let shared = GroupStages.shared
+        
+        groupB.shuffle()
+        groupC.shuffle()
+        groupD.shuffle()
+        
+        shared.groupBfirstSecond.append(groupB[0])
+        shared.groupBfirstSecond.append(groupB[1])
+        
+        shared.groupCfirstSecond.append(groupC[0])
+        shared.groupCfirstSecond.append(groupC[1])
+        
+        shared.groupDfirstSecond.append(groupD[0])
+        shared.groupDfirstSecond.append(groupD[1])
+        
+        
+        
+    }
+    
+
+    
+    func exceptBotherGruopLeaders() {
+        
+        let shared = GroupStages.shared
+        
+        groupA.shuffle()
+        groupC.shuffle()
+        groupD.shuffle()
+        
+        shared.groupAfirstSecond.append(groupA[0])
+        shared.groupAfirstSecond.append(groupA[1])
+        
+        shared.groupCfirstSecond.append(groupC[0])
+        shared.groupCfirstSecond.append(groupC[1])
+        
+        shared.groupDfirstSecond.append(groupD[0])
+        shared.groupDfirstSecond.append(groupD[1])
+        
+        
+    }
+    
+    func exceptCotherGruopLeaders() {
+        
+        let shared = GroupStages.shared
+        
+        groupB.shuffle()
+        groupA.shuffle()
+        groupD.shuffle()
+        
+        shared.groupBfirstSecond.append(groupB[0])
+        shared.groupBfirstSecond.append(groupB[1])
+        
+        shared.groupAfirstSecond.append(groupA[0])
+        shared.groupAfirstSecond.append(groupA[1])
+        
+        shared.groupDfirstSecond.append(groupD[0])
+        shared.groupDfirstSecond.append(groupD[1])
+        
+        
+        
+    }
+    
+    func exceptDotherGruopLeaders() {
+        
+        let shared = GroupStages.shared
+        
+        groupB.shuffle()
+        groupC.shuffle()
+        groupA.shuffle()
+        
+        shared.groupBfirstSecond.append(groupB[0])
+        shared.groupBfirstSecond.append(groupB[1])
+        
+        shared.groupCfirstSecond.append(groupC[0])
+        shared.groupCfirstSecond.append(groupC[1])
+        
+        shared.groupAfirstSecond.append(groupA[0])
+        shared.groupAfirstSecond.append(groupA[1])
+        
+        
+    }
+    
     
     func makeAlert(title: String,message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
@@ -466,7 +662,5 @@ class FixtureViewController: UIViewController {
         alert.addAction(button)
         self.present(alert, animated: true)
     }
-    
-    
     
 }

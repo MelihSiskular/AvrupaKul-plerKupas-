@@ -40,11 +40,12 @@ class ViewController: UIViewController {
         view.addSubview(mainLabel)
         
         startButton.setTitle("Takım Seçimi", for: UIControl.State.normal)
-        startButton.setTitleColor(UIColor.blue, for: UIControl.State.normal)
+        startButton.setTitleColor(UIColor.black, for: UIControl.State.normal)
         startButton.backgroundColor = .systemGray5
         startButton.frame = CGRect(x: width * 0.5 - (width * 0.7)/2, y: height * 0.75, width: width * 0.7, height: height * 0.07)
         view.addSubview(startButton)
         startButton.addTarget(self, action: #selector(tapStartButton), for: UIControl.Event.touchUpInside)
+        startButton.layer.cornerRadius = 12
         
        
         

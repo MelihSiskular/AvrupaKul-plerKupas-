@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D716662F29E1911800F8E765 /* Match1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716662E29E1911800F8E765 /* Match1ViewController.swift */; };
+		D716663129E1912E00F8E765 /* Match2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716663029E1912E00F8E765 /* Match2ViewController.swift */; };
+		D716663329E1913C00F8E765 /* Match3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716663229E1913C00F8E765 /* Match3ViewController.swift */; };
 		D73EA74929DECE3F00A22DAC /* FixtureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73EA74829DECE3F00A22DAC /* FixtureViewController.swift */; };
 		D73EA74B29DEF69100A22DAC /* TeamSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73EA74A29DEF69000A22DAC /* TeamSettings.swift */; };
+		D7612B5D29E4A22A007BDDD3 /* Eşleşmeler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7612B5C29E4A22A007BDDD3 /* Eşleşmeler.swift */; };
 		D7EFE0DE29DCBCB7005C1BEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFE0DD29DCBCB7005C1BEC /* AppDelegate.swift */; };
 		D7EFE0E029DCBCB7005C1BEC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFE0DF29DCBCB7005C1BEC /* SceneDelegate.swift */; };
 		D7EFE0E229DCBCB7005C1BEC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFE0E129DCBCB7005C1BEC /* ViewController.swift */; };
@@ -22,8 +26,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D716662E29E1911800F8E765 /* Match1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match1ViewController.swift; sourceTree = "<group>"; };
+		D716663029E1912E00F8E765 /* Match2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match2ViewController.swift; sourceTree = "<group>"; };
+		D716663229E1913C00F8E765 /* Match3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match3ViewController.swift; sourceTree = "<group>"; };
 		D73EA74829DECE3F00A22DAC /* FixtureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureViewController.swift; sourceTree = "<group>"; };
 		D73EA74A29DEF69000A22DAC /* TeamSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettings.swift; sourceTree = "<group>"; };
+		D7612B5C29E4A22A007BDDD3 /* Eşleşmeler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Eşleşmeler.swift"; sourceTree = "<group>"; };
 		D7EFE0DA29DCBCB7005C1BEC /* Avrupa Kulüpler Kupası.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Avrupa Kulüpler Kupası.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7EFE0DD29DCBCB7005C1BEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7EFE0DF29DCBCB7005C1BEC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +57,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D716662C29E1887900F8E765 /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				D7EFE0E129DCBCB7005C1BEC /* ViewController.swift */,
+				D7EFE0F429DCCDC8005C1BEC /* TeamSelectViewController.swift */,
+				D7EFE0F829DCDD61005C1BEC /* GameViewController.swift */,
+				D73EA74829DECE3F00A22DAC /* FixtureViewController.swift */,
+				D716662E29E1911800F8E765 /* Match1ViewController.swift */,
+				D716663029E1912E00F8E765 /* Match2ViewController.swift */,
+				D716663229E1913C00F8E765 /* Match3ViewController.swift */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		D716662D29E188F600F8E765 /* SwiftFiles */ = {
+			isa = PBXGroup;
+			children = (
+				D7EFE0F629DCD102005C1BEC /* TableViewCell.swift */,
+				D73EA74A29DEF69000A22DAC /* TeamSettings.swift */,
+				D7612B5C29E4A22A007BDDD3 /* Eşleşmeler.swift */,
+			);
+			path = SwiftFiles;
+			sourceTree = "<group>";
+		};
+		D716663429E200DA00F8E765 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				D7EFE0E629DCBCB7005C1BEC /* Avrupa_Kulu_pler_Kupas_.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		D716663529E2010900F8E765 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				D7EFE0E329DCBCB7005C1BEC /* Main.storyboard */,
+				D7EFE0EB29DCBCB9005C1BEC /* LaunchScreen.storyboard */,
+				D7EFE0E929DCBCB9005C1BEC /* Assets.xcassets */,
+				D7EFE0EE29DCBCB9005C1BEC /* Info.plist */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
 		D7EFE0D129DCBCB7005C1BEC = {
 			isa = PBXGroup;
 			children = (
@@ -70,17 +121,10 @@
 			children = (
 				D7EFE0DD29DCBCB7005C1BEC /* AppDelegate.swift */,
 				D7EFE0DF29DCBCB7005C1BEC /* SceneDelegate.swift */,
-				D7EFE0E129DCBCB7005C1BEC /* ViewController.swift */,
-				D7EFE0F429DCCDC8005C1BEC /* TeamSelectViewController.swift */,
-				D7EFE0F829DCDD61005C1BEC /* GameViewController.swift */,
-				D73EA74829DECE3F00A22DAC /* FixtureViewController.swift */,
-				D7EFE0F629DCD102005C1BEC /* TableViewCell.swift */,
-				D73EA74A29DEF69000A22DAC /* TeamSettings.swift */,
-				D7EFE0E329DCBCB7005C1BEC /* Main.storyboard */,
-				D7EFE0E929DCBCB9005C1BEC /* Assets.xcassets */,
-				D7EFE0EB29DCBCB9005C1BEC /* LaunchScreen.storyboard */,
-				D7EFE0EE29DCBCB9005C1BEC /* Info.plist */,
-				D7EFE0E629DCBCB7005C1BEC /* Avrupa_Kulu_pler_Kupas_.xcdatamodeld */,
+				D716662C29E1887900F8E765 /* Screen */,
+				D716662D29E188F600F8E765 /* SwiftFiles */,
+				D716663429E200DA00F8E765 /* CoreData */,
+				D716663529E2010900F8E765 /* Others */,
 			);
 			path = "Avrupa Kulüpler Kupası";
 			sourceTree = "<group>";
@@ -156,12 +200,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D716663329E1913C00F8E765 /* Match3ViewController.swift in Sources */,
 				D7EFE0F929DCDD61005C1BEC /* GameViewController.swift in Sources */,
 				D7EFE0E229DCBCB7005C1BEC /* ViewController.swift in Sources */,
 				D7EFE0DE29DCBCB7005C1BEC /* AppDelegate.swift in Sources */,
+				D7612B5D29E4A22A007BDDD3 /* Eşleşmeler.swift in Sources */,
 				D7EFE0F529DCCDC8005C1BEC /* TeamSelectViewController.swift in Sources */,
 				D73EA74929DECE3F00A22DAC /* FixtureViewController.swift in Sources */,
 				D7EFE0F729DCD102005C1BEC /* TableViewCell.swift in Sources */,
+				D716662F29E1911800F8E765 /* Match1ViewController.swift in Sources */,
+				D716663129E1912E00F8E765 /* Match2ViewController.swift in Sources */,
 				D7EFE0E029DCBCB7005C1BEC /* SceneDelegate.swift in Sources */,
 				D73EA74B29DEF69100A22DAC /* TeamSettings.swift in Sources */,
 				D7EFE0E829DCBCB7005C1BEC /* Avrupa_Kulu_pler_Kupas_.xcdatamodeld in Sources */,
@@ -313,7 +361,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 49CUMHZT5K;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Avrupa Kulüpler Kupası/Info.plist";
+				INFOPLIST_FILE = "Avrupa Kulüpler Kupası/Others/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -341,7 +389,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 49CUMHZT5K;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Avrupa Kulüpler Kupası/Info.plist";
+				INFOPLIST_FILE = "Avrupa Kulüpler Kupası/Others/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

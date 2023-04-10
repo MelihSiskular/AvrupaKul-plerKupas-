@@ -111,6 +111,22 @@
             </objects>
             <point key="canvasLocation" x="1887.7862595419847" y="-2.1126760563380285"/>
         </scene>
+        <!--Match1 View Controller-->
+        <scene sceneID="8LH-Wj-hAc">
+            <objects>
+                <viewController id="0pa-z0-nel" customClass="Match1ViewController" customModule="Avrupa_Kulu_pler_Kupası" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SX0-Od-CYu">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="9Ja-IR-boU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="NZ7-E5-RX7"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A7J-DR-Cxv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4430" y="-705"/>
+        </scene>
         <!--Game View Controller-->
         <scene sceneID="l7T-53-sfv">
             <objects>
@@ -178,10 +194,47 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="9rg-ug-zey"/>
+                    <connections>
+                        <segue destination="0pa-z0-nel" kind="show" identifier="toMatch1" id="vZX-yc-JhK"/>
+                        <segue destination="LSu-gA-bSB" kind="show" identifier="toMatch2" id="ybI-Jy-ipt"/>
+                        <segue destination="W9l-Zv-rn4" kind="show" identifier="toMtach3" id="LrA-Zc-mLi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QmP-Rb-Puq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3490.8396946564885" y="-2.1126760563380285"/>
+        </scene>
+        <!--Match2 View Controller-->
+        <scene sceneID="2JG-DV-ob9">
+            <objects>
+                <viewController id="LSu-gA-bSB" customClass="Match2ViewController" customModule="Avrupa_Kulu_pler_Kupası" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Axu-7O-HWI">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="JZk-vy-pg2"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Epk-VE-3LZ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TmR-a1-lXX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4430" y="-2"/>
+        </scene>
+        <!--Match3 View Controller-->
+        <scene sceneID="0Hf-wa-G56">
+            <objects>
+                <viewController id="W9l-Zv-rn4" customClass="Match3ViewController" customModule="Avrupa_Kulu_pler_Kupası" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="k5k-od-bX5">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="cjb-iU-fOe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Uqm-EM-e6S"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vCZ-Lz-sjc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4430" y="701"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2p3-DO-obo">
