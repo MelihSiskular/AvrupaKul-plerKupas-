@@ -25,366 +25,326 @@ import Foundation
 
 //SEÇTİĞİM TAKIM NE İSE ONUN KENDİ SINIFI ÇAĞRILCAK!
 
+
+///Herkeste olan bonusAttack ve bonusDefense değerleri herkes için tamamen random gelecek
+///Ancak tacticBonusPlan ve Attack versiyonu robotlar için random bizim için biz ne seçtiysek olmalı
+
+
 class ManchesterCity {
     
+    static let shared = ManchesterCity()
+    
     let powerAttack = 86
-    let powerMid = 86
+    let powerMid = 86.0
     let powerDefense = 86
     
-    //Kullanıcı sliderdan seçtiği Attack değeri olacak!
-    var tacticsBonusAttack : Int
+    var bonusAttack = Int.random(in: -10...10)
+    var bonusDefense = Int.random(in: -10...10)
+  
+    //Burası henüz kullanılmıyor!
+    var tacticsBonusAttack = Int.random(in: 0...20)
+    var tacticsBonusPlan = Int.random(in: 0...5)
     
-    //Kullanıcının dizilişlerinde seçtiği plan olacak!
-    var tacticsBonusPlan : Int
+
     
-    
-    
-    init(tacticsBonusAttack: Int,tacticsBonusPlan: Int) {
-        self.tacticsBonusAttack = tacticsBonusAttack
-        if self.tacticsBonusAttack == 65/5 {
-            //ekstra puan olsun sebebi: Kendine göre en iyi hücümAğırlığını seçti
-            
-            
-        }
-        self.tacticsBonusPlan = tacticsBonusPlan
-        if self.tacticsBonusPlan == 4{
-            
-            //ekstra puan olsun sebebi: Kendine göre en iyi dizilişi seçti
-        
-        //Eğer hiç bişi uyumlu değilse ekstra düşüş olabilir !
-        }
-    }
+    init(){}
+
 }
 
 
 
 class ManchesterUnited {
     
+    static let shared = ManchesterUnited()
+    
     let powerAttack = 80
-    let powerMid = 83
+    let powerMid = 83.0
     let powerDefense = 82
   
 
-    var tacticsBonusAttack : Int
-    var tacticsBonusPlan : Int
+    var bonusAttack = Int.random(in: -10...10)
+    var bonusDefense = Int.random(in: -10...10)
+  
+    var tacticsBonusAttack = Int.random(in: 0...20)
+    var tacticsBonusPlan = Int.random(in: 0...5)
     
-    init(tacticsBonusAttack: Int,tacticsBonusPlan: Int) {
-        self.tacticsBonusAttack = tacticsBonusAttack
-        if self.tacticsBonusAttack == 60/5 {
-    
-        }
-        self.tacticsBonusPlan = tacticsBonusPlan
-        if self.tacticsBonusPlan == 4{
-     
-        }
-    }
+    init(){}
+ 
 }
 
 class Arsenal {
     
+    static let shared = Arsenal()
+    
+    
     let powerAttack = 82
-    let powerMid = 84
+    let powerMid = 84.0
     let powerDefense = 80
+    
+    var bonusAttack = Int.random(in: -10...10)
+    var bonusDefense = Int.random(in: -10...10)
   
+    var tacticsBonusAttack = Int.random(in: 0...20)
+    var tacticsBonusPlan = Int.random(in: 0...5)
+    
+    
+    
+    init(){}
 
-    var tacticsBonusAttack : Int
-    var tacticsBonusPlan : Int
     
-    init(tacticsBonusAttack: Int,tacticsBonusPlan: Int) {
-        self.tacticsBonusAttack = tacticsBonusAttack
-        if self.tacticsBonusAttack == 65/5 {
-    
-        }
-        self.tacticsBonusPlan = tacticsBonusPlan
-        if self.tacticsBonusPlan == 4{
-     
-        }
-    }
+
 }
 
 
 class Tottenham {
     
+    static let shared = Tottenham()
+    
     let powerAttack = 84
-    let powerMid = 81
+    let powerMid = 81.0
     let powerDefense = 80
   
 
-    var tacticsBonusAttack : Int
-    var tacticsBonusPlan : Int
+    var bonusAttack = Int.random(in: -10...10)
+    var bonusDefense = Int.random(in: -10...10)
+  
+    var tacticsBonusAttack = Int.random(in: 0...20)
+    var tacticsBonusPlan = Int.random(in: 0...5)
     
-    init(tacticsBonusAttack: Int,tacticsBonusPlan: Int) {
-        self.tacticsBonusAttack = tacticsBonusAttack
-        if self.tacticsBonusAttack == 55/5 {
-    
-        }
-        self.tacticsBonusPlan = tacticsBonusPlan
-        if self.tacticsBonusPlan == 4{
-     
-        }
-    }
+    init(){}
 }
 
 
 class Chelsea {
+    
+    static let shared = Chelsea()
+    
     let powerAttack = 84
-    let powerMid = 86
+    let powerMid = 86.0
     let powerDefense = 84
   
 
-    var tacticsBonusAttack : Int
-    var tacticsBonusPlan : Int
+    var bonusAttack = Int.random(in: -10...10)
+    var bonusDefense = Int.random(in: -10...10)
+  
+    var tacticsBonusAttack = Int.random(in: 0...20)
+    var tacticsBonusPlan = Int.random(in: 0...5)
     
-    init(tacticsBonusAttack: Int,tacticsBonusPlan: Int) {
-        self.tacticsBonusAttack = tacticsBonusAttack
-        if self.tacticsBonusAttack == 65/5 {
+    init(){}
     
-        }
-        self.tacticsBonusPlan = tacticsBonusPlan
-        if self.tacticsBonusPlan == 1{
-     
-        }
-    }
 }
 
 
 class Liverpool {
+    
+    static let shared = Liverpool()
+    
     let powerAttack = 84
-    let powerMid = 82
+    let powerMid = 82.0
     let powerDefense = 87
   
 
-    var tacticsBonusAttack : Int
-    var tacticsBonusPlan : Int
-    
-    init(tacticsBonusAttack: Int,tacticsBonusPlan: Int) {
-        self.tacticsBonusAttack = tacticsBonusAttack
-        if self.tacticsBonusAttack == 55/5 {
-    
-        }
-        self.tacticsBonusPlan = tacticsBonusPlan
-        if self.tacticsBonusPlan == 3{
-     
-        }
-    }
-    
+    var bonusAttack = Int.random(in: -10...10)
+    var bonusDefense = Int.random(in: -10...10)
+  
+    var tacticsBonusAttack = Int.random(in: 0...20)
+    var tacticsBonusPlan = Int.random(in: 0...5)
+    init(){}
     
 }
 
 
 class RealMadrid {
+    
+    static let shared = RealMadrid()
+    
     let powerAttack = 85
-    let powerMid = 85
+    let powerMid = 85.0
     let powerDefense = 84
   
 
-    var tacticsBonusAttack : Int
-    var tacticsBonusPlan : Int
+    var bonusAttack = Int.random(in: -10...10)
+    var bonusDefense = Int.random(in: -10...10)
+  
+    var tacticsBonusAttack = Int.random(in: 0...20)
+    var tacticsBonusPlan = Int.random(in: 0...5)
     
-    init(tacticsBonusAttack: Int,tacticsBonusPlan: Int) {
-        self.tacticsBonusAttack = tacticsBonusAttack
-        if self.tacticsBonusAttack == 60/5 {
-    
-        }
-        self.tacticsBonusPlan = tacticsBonusPlan
-        if self.tacticsBonusPlan == 3{
-     
-        }
-    }
+
+    init(){}
 }
 
 
 class Barcelona {
+    
+    static let shared = Barcelona()
+    
     let powerAttack = 84
-    let powerMid = 85
+    let powerMid = 85.0
     let powerDefense = 82
   
 
-    var tacticsBonusAttack : Int
-    var tacticsBonusPlan : Int
-    
-    init(tacticsBonusAttack: Int,tacticsBonusPlan: Int) {
-        self.tacticsBonusAttack = tacticsBonusAttack
-        if self.tacticsBonusAttack == 60/5 {
-            
-        }
-        self.tacticsBonusPlan = tacticsBonusPlan
-        if self.tacticsBonusPlan == 3{
-            
-        }
-    }
+    var bonusAttack = Int.random(in: -10...10)
+    var bonusDefense = Int.random(in: -10...10)
+  
+    var tacticsBonusAttack = Int.random(in: 0...20)
+    var tacticsBonusPlan = Int.random(in: 0...5)
+
+    init(){}
 }
 
 
 class AtleticoMadrid {
+    
+    static let shared = AtleticoMadrid()
+    
     let powerAttack = 82
-    let powerMid = 82
+    let powerMid = 82.0
     let powerDefense = 80
   
 
-    var tacticsBonusAttack : Int
-    var tacticsBonusPlan : Int
+    var bonusAttack = Int.random(in: -10...10)
+    var bonusDefense = Int.random(in: -10...10)
+  
+    var tacticsBonusAttack = Int.random(in: 0...20)
+    var tacticsBonusPlan = Int.random(in: 0...5)
     
-    init(tacticsBonusAttack: Int,tacticsBonusPlan: Int) {
-        self.tacticsBonusAttack = tacticsBonusAttack
-        if self.tacticsBonusAttack == 40/5 {
-    
-        }
-        self.tacticsBonusPlan = tacticsBonusPlan
-        if self.tacticsBonusPlan == 5{
-     
-        }
-    }
+ 
+    init(){}
 }
 
 
 class Inter {
+    
+    static let shared = Inter()
+    
     let powerAttack = 85
-    let powerMid = 83
+    let powerMid = 83.0
     let powerDefense = 83
   
 
-    var tacticsBonusAttack : Int
-    var tacticsBonusPlan : Int
-    
-    init(tacticsBonusAttack: Int,tacticsBonusPlan: Int) {
-        self.tacticsBonusAttack = tacticsBonusAttack
-        if self.tacticsBonusAttack == 60/5 {
-    
-        }
-        self.tacticsBonusPlan = tacticsBonusPlan
-        if self.tacticsBonusPlan == 1{
-     
-        }
-    }
+    var bonusAttack = Int.random(in: -10...10)
+    var bonusDefense = Int.random(in: -10...10)
+  
+    var tacticsBonusAttack = Int.random(in: 0...20)
+    var tacticsBonusPlan = Int.random(in: 0...5)
+    init(){}
+
 }
 
 class Milan {
+    
+    static let shared = Milan()
+    
     let powerAttack = 81
-    let powerMid = 82
+    let powerMid = 82.0
     let powerDefense = 79
   
 
-    var tacticsBonusAttack : Int
-    var tacticsBonusPlan : Int
+    var bonusAttack = Int.random(in: -10...10)
+    var bonusDefense = Int.random(in: -10...10)
+  
+    var tacticsBonusAttack = Int.random(in: 0...20)
+    var tacticsBonusPlan = Int.random(in: 0...5)
     
-    init(tacticsBonusAttack: Int,tacticsBonusPlan: Int) {
-        self.tacticsBonusAttack = tacticsBonusAttack
-        if self.tacticsBonusAttack == 50/5 {
-    
-        }
-        self.tacticsBonusPlan = tacticsBonusPlan
-        if self.tacticsBonusPlan == 4{
-     
-        }
-    }
+    init(){}
+
 }
 
 class Napoli {
+    
+    static let shared = Napoli()
+    
     let powerAttack = 81
-    let powerMid = 81
+    let powerMid = 81.0
     let powerDefense = 80
   
 
-    var tacticsBonusAttack : Int
-    var tacticsBonusPlan : Int
+    var bonusAttack = Int.random(in: -10...10)
+    var bonusDefense = Int.random(in: -10...10)
+  
+    var tacticsBonusAttack = Int.random(in: 0...20)
+    var tacticsBonusPlan = Int.random(in: 0...5)
     
-    init(tacticsBonusAttack: Int,tacticsBonusPlan: Int) {
-        self.tacticsBonusAttack = tacticsBonusAttack
-        if self.tacticsBonusAttack == 60/5 {
-    
-        }
-        self.tacticsBonusPlan = tacticsBonusPlan
-        if self.tacticsBonusPlan == 3{
-     
-        }
-    }
+    init(){}
+  
 }
 
 
 class Juventus {
+    
+    static let shared = Juventus()
+    
     let powerAttack = 84
-    let powerMid = 81
+    let powerMid = 81.0
     let powerDefense = 82
   
 
-    var tacticsBonusAttack : Int
-    var tacticsBonusPlan : Int
+    var bonusAttack = Int.random(in: -10...10)
+    var bonusDefense = Int.random(in: -10...10)
+  
+    var tacticsBonusAttack = Int.random(in: 0...20)
+    var tacticsBonusPlan = Int.random(in: 0...5)
     
-    init(tacticsBonusAttack: Int,tacticsBonusPlan: Int) {
-        self.tacticsBonusAttack = tacticsBonusAttack
-        if self.tacticsBonusAttack == 60/5 {
     
-        }
-        self.tacticsBonusPlan = tacticsBonusPlan
-        if self.tacticsBonusPlan == 1{
-     
-        }
-    }
+    init(){}
 }
 
 class PSG {
+    
+    static let shared = PSG()
+    
     let powerAttack = 88
-    let powerMid = 82
+    let powerMid = 82.0
     let powerDefense = 83
   
 
-    var tacticsBonusAttack : Int
-    var tacticsBonusPlan : Int
+    var bonusAttack = Int.random(in: -10...10)
+    var bonusDefense = Int.random(in: -10...10)
+  
+    var tacticsBonusAttack = Int.random(in: 0...20)
+    var tacticsBonusPlan = Int.random(in: 0...5)
     
-    init(tacticsBonusAttack: Int,tacticsBonusPlan: Int) {
-        self.tacticsBonusAttack = tacticsBonusAttack
-        if self.tacticsBonusAttack == 70/5 {
+    init(){}
     
-        }
-        self.tacticsBonusPlan = tacticsBonusPlan
-        if self.tacticsBonusPlan == 0{
-     
-        }
-    }
 }
 
 class BorussiaDortmund {
+    
+    static let shared = BorussiaDortmund()
+    
     let powerAttack = 80
-    let powerMid = 81
+    let powerMid = 81.0
     let powerDefense = 80
   
 
-    var tacticsBonusAttack : Int
-    var tacticsBonusPlan : Int
+    var bonusAttack = Int.random(in: -10...10)
+    var bonusDefense = Int.random(in: -10...10)
+  
+    var tacticsBonusAttack = Int.random(in: 0...20)
+    var tacticsBonusPlan = Int.random(in: 0...5)
     
-    init(tacticsBonusAttack: Int,tacticsBonusPlan: Int) {
-        self.tacticsBonusAttack = tacticsBonusAttack
-        if self.tacticsBonusAttack == 50/5 {
-    
-        }
-        self.tacticsBonusPlan = tacticsBonusPlan
-        if self.tacticsBonusPlan == 4{
-     
-        }
-    }
+    init(){}
+  
 }
 
 class BayernMünchen {
+    
+    static let shared = BayernMünchen()
+    
     let powerAttack = 89
-    let powerMid = 85
+    let powerMid = 85.0
     let powerDefense = 82
   
 
-    var tacticsBonusAttack : Int
-    var tacticsBonusPlan : Int
-    
-    init(tacticsBonusAttack: Int,tacticsBonusPlan: Int) {
-        self.tacticsBonusAttack = tacticsBonusAttack
-        if self.tacticsBonusAttack == 70/5 {
-    
-        }
-        self.tacticsBonusPlan = tacticsBonusPlan
-        if self.tacticsBonusPlan == 4{
-     
-        }
-    }
+    var bonusAttack = Int.random(in: -10...10)
+    var bonusDefense = Int.random(in: -10...10)
+  
+    var tacticsBonusAttack = Int.random(in: 0...20)
+    var tacticsBonusPlan = Int.random(in: 0...5)
+ 
+    init(){}
 }
+
 
 
 

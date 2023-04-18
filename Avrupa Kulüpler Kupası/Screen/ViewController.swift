@@ -16,6 +16,8 @@ class ViewController: UIViewController {
   
     let imageLogo = UIImageView()
     
+    let kupaImage = UIImageView()
+    
     let mainLabel = UILabel()
     
     let startButton = UIButton()
@@ -47,6 +49,9 @@ class ViewController: UIViewController {
         startButton.addTarget(self, action: #selector(tapStartButton), for: UIControl.Event.touchUpInside)
         startButton.layer.cornerRadius = 12
         
+        kupaImage.image = UIImage(named: "kupa")
+        kupaImage.frame = CGRect(x: width * 0.5 - (width * 0.45)/2, y: height * 0.44, width: width * 0.45, height: height * 0.26)
+        view.addSubview(kupaImage)
        
         
     }

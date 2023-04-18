@@ -28,7 +28,10 @@ class FixtureViewController: UIViewController {
     var match1 = ""
     var match2 = ""
     var match3 = ""
-    
+    //Bunları bir de diziye atalım aktarma işleminde
+    var match1Array = [String]()
+    var match2Array = [String]()
+    var match3Array = [String]()
     
     ///Kendi Takım Renklerimiz gameViewScreen üzerinden gelecek
     var myTeamColors = [UIColor]()
@@ -38,15 +41,12 @@ class FixtureViewController: UIViewController {
     var buttonMatch2 = UIButton()
     var buttonMatch3 = UIButton()
     
-    
-
     ///16 tane takımdan 4'erli 4 tane grup olcak
     ///Bu gruplar tamamen random bir şekilde oluşturulcak
     var groupA = [String]()
     var groupB = [String]()
     var groupC = [String]()
     var groupD = [String]()
-    
     
     ///Bizim içinde olduğumuz Grup ekranda gözükecek
     ///Bu yüzden gruptaki takımların isimleri, puanları, averajları göstermemiz gerek
@@ -75,7 +75,11 @@ class FixtureViewController: UIViewController {
     
     ///Grup Aşamasının altında  bir açıklama
     var guideLabel = UILabel()
-
+    
+    ///Diğer classlarda değişim yapabilmek için sharedlar
+    var controls = Controls.sharedControls
+    var controlsMyTeam = ControlsMyTeam.sharedControlsMyTeam
+    
     
     
     //MARK: ViewDidLoad
@@ -91,6 +95,8 @@ class FixtureViewController: UIViewController {
         view.addSubview(imageScreen)
         imageScreen.contentMode = .scaleAspectFit
         
+        print("Shareddan gelen atack \(controlsMyTeam.finalAttack)")
+        print("Shateddan gelen defans \(controlsMyTeam.finalDefense)")
         
         groupFirstPosition.frame = CGRect(x: width * 0.05, y: height * 0.15, width: width * 0.65, height: height * 0.06)
         
@@ -265,6 +271,8 @@ class FixtureViewController: UIViewController {
         view.addSubview(buttonMatch3)
         view.addSubview(goQuarterFinals)
         view.addSubview(guideLabel)
+        
+
        
         groupFirstPosition.text = myTeam
         randomGroups()
@@ -275,6 +283,47 @@ class FixtureViewController: UIViewController {
  
         
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if controls.match1Enable == true {
+            buttonMatch1.isUserInteractionEnabled = true
+            buttonMatch1.alpha = 1
+            
+            
+            buttonMatch2.isUserInteractionEnabled = false
+            buttonMatch2.alpha = 0.5
+            
+            buttonMatch3.isUserInteractionEnabled = false
+            buttonMatch3.alpha = 0.5
+            
+        }else if controls.match2Enable == true {
+            buttonMatch1.isUserInteractionEnabled = false
+            buttonMatch1.alpha = 0.5
+            
+            
+            buttonMatch2.isUserInteractionEnabled = true
+            buttonMatch2.alpha = 1
+            
+            buttonMatch3.isUserInteractionEnabled = false
+            buttonMatch3.alpha = 0.5
+            
+        }else if controls.match3Enable == true {
+            buttonMatch1.isUserInteractionEnabled = false
+            buttonMatch1.alpha = 0.5
+            
+            buttonMatch2.isUserInteractionEnabled = false
+            buttonMatch2.alpha = 0.5
+            
+            buttonMatch3.isUserInteractionEnabled = true
+            buttonMatch3.alpha = 1
+        }else {
+            //Bu da hepsinin false olduğu yani 3. maçıno oynandığı an burdan yapılan grup sıralam kontrolüne göre çeyrek final butonu aktifleşir
+            buttonMatch3.isUserInteractionEnabled = false
+            buttonMatch3.alpha = 0.5
+            //Son maçtan geldiğimizde bunu da kapatmamız lazım!
+            
+        }
     }
     
     //MARK: FUNC
@@ -305,17 +354,22 @@ class FixtureViewController: UIViewController {
             
             let destination = segue.destination as! Match1ViewController
             destination.matchText = match1
+            destination.matchArray = match1Array
             
         }
         else if segue.identifier == "toMatch2" {
             
             let destination = segue.destination as! Match2ViewController
-          
+            destination.matchText = match2
+            destination.matchArray = match2Array
             
         }
         else if segue.identifier == "toMatch3" {
             
             let destination = segue.destination as! Match3ViewController
+            destination.matchText = match3
+            destination.matchArray = match3Array
+            
             
         }
     }
@@ -401,6 +455,13 @@ class FixtureViewController: UIViewController {
                 match1 = "\(myTeam) Vs \(team1)"
                 match2 = "\(myTeam) Vs \(team2)"
                 match3 = "\(myTeam) Vs \(team3)"
+                match1Array.append(myTeam)
+                match1Array.append(team1)
+                match2Array.append(myTeam)
+                match2Array.append(team2)
+                match3Array.append(myTeam)
+                match3Array.append(team3)
+                
                 
                 print(match1)
                 print(match2)
@@ -431,6 +492,12 @@ class FixtureViewController: UIViewController {
                 match1 = "\(myTeam) Vs \(team1)"
                 match2 = "\(myTeam) Vs \(team2)"
                 match3 = "\(myTeam) Vs \(team3)"
+                match1Array.append(myTeam)
+                match1Array.append(team1)
+                match2Array.append(myTeam)
+                match2Array.append(team2)
+                match3Array.append(myTeam)
+                match3Array.append(team3)
                 
                 matchLabel1.text = match1
                 matchLabel2.text = match2
@@ -461,6 +528,12 @@ class FixtureViewController: UIViewController {
                 match1 = "\(myTeam) Vs \(team1)"
                 match2 = "\(myTeam) Vs \(team2)"
                 match3 = "\(myTeam) Vs \(team3)"
+                match1Array.append(myTeam)
+                match1Array.append(team1)
+                match2Array.append(myTeam)
+                match2Array.append(team2)
+                match3Array.append(myTeam)
+                match3Array.append(team3)
                 
         
                 
@@ -492,6 +565,12 @@ class FixtureViewController: UIViewController {
                 match1 = "\(myTeam) Vs \(team1)"
                 match2 = "\(myTeam) Vs \(team2)"
                 match3 = "\(myTeam) Vs \(team3)"
+                match1Array.append(myTeam)
+                match1Array.append(team1)
+                match2Array.append(myTeam)
+                match2Array.append(team2)
+                match3Array.append(myTeam)
+                match3Array.append(team3)
                 
                 print(match1)
                 print(match2)

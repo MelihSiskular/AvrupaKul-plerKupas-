@@ -24,8 +24,6 @@ class TeamSelectViewController: UIViewController,UITableViewDelegate,UITableView
     ///Her takım için biri ana renk olmak üzere 2 rengi olacak
     var teamColor = [[UIColor]]()
     
-
-    
     ///Her bir cell'e tıklanınca segue işlemi olacak
     ///Karşıdaki Değerleri ile eşleşmesi için böyle kullanıyorum
     var selectTeamName = ""
@@ -33,12 +31,15 @@ class TeamSelectViewController: UIViewController,UITableViewDelegate,UITableView
     var selectTeamLogo = UIImage()
     var selectTeamColor = [UIColor]()
     
+    ///Takım seçimine gelince oynanan maçlar varsa match değerleri enable yapmak gerek
+    var shared = Controls.sharedControls
+    
   @IBOutlet var tableView: UITableView!
     
   //MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -119,6 +120,16 @@ class TeamSelectViewController: UIViewController,UITableViewDelegate,UITableView
         
         
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //Her takım seçimine döndüğünde 0lancak değerler
+        
+        ///Grup Maçları için        
+        shared.match1Enable = true
+        shared.match2Enable = false
+        shared.match3Enable = false
+
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
