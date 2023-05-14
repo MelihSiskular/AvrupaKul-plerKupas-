@@ -33,6 +33,8 @@ class TeamSelectViewController: UIViewController,UITableViewDelegate,UITableView
     
     ///Takım seçimine gelince oynanan maçlar varsa match değerleri enable yapmak gerek
     var shared = Controls.sharedControls
+    var controlsPoinsAndAverages = ControlGrupPointsAndAverages.sharedControlPoinsAndAverages
+    var groupStageControl = GroupStages.shared
     
   @IBOutlet var tableView: UITableView!
     
@@ -45,7 +47,7 @@ class TeamSelectViewController: UIViewController,UITableViewDelegate,UITableView
         
         navigationController?.navigationBar.topItem?.backButtonTitle = "Menü"
         
-        
+
 
         
         ///Takım ismi, logo,renkleri ve takım güçleri  için tableViewCellere bilgi buradan gelecek
@@ -125,10 +127,33 @@ class TeamSelectViewController: UIViewController,UITableViewDelegate,UITableView
     override func viewWillAppear(_ animated: Bool) {
         //Her takım seçimine döndüğünde 0lancak değerler
         
+        shared.isSelectTeam = false
+        
         ///Grup Maçları için        
         shared.match1Enable = true
         shared.match2Enable = false
         shared.match3Enable = false
+        
+        groupStageControl.groupAfirstSecond.removeAll()
+        groupStageControl.groupBfirstSecond.removeAll()
+        groupStageControl.groupCfirstSecond.removeAll()
+        groupStageControl.groupDfirstSecond.removeAll()
+        
+        groupStageControl.groupA.removeAll()
+        groupStageControl.groupB.removeAll()
+        groupStageControl.groupC.removeAll()
+        groupStageControl.groupD.removeAll()
+        
+        
+        controlsPoinsAndAverages.MyteamAverages = 0
+        controlsPoinsAndAverages.myTeanPoints = 0
+        controlsPoinsAndAverages.team1Points = 0
+        controlsPoinsAndAverages.team1Averages = 0
+        controlsPoinsAndAverages.team2Points = 0
+        controlsPoinsAndAverages.team2Averages = 0
+        controlsPoinsAndAverages.team3Points = 0
+        controlsPoinsAndAverages.team3Averages = 0
+        
 
     }
     

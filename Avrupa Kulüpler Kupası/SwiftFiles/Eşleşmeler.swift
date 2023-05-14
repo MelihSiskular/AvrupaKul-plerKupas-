@@ -22,6 +22,8 @@ class GroupStages {
     var groupCfirstSecond = [String]()
     var groupDfirstSecond = [String]()
     
+    init(){}
+    
     
     
 }

@@ -111,6 +111,7 @@ class GameViewController: UIViewController {
         tacticsLabel.numberOfLines = 6
         view.addSubview(tacticsLabel)
         
+        
         segmentControlOutlet.backgroundColor = choosenTeamColor[0]
         segmentControlOutlet.frame = CGRect(x: width * 0.5 - (width * 0.95)/2, y: height * 0.32, width: width * 0.95, height: height * 0.05)
 

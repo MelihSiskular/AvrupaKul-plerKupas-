@@ -38,12 +38,20 @@ class ManchesterCity {
     let powerMid = 86.0
     let powerDefense = 86
     
-    var bonusAttack = Int.random(in: -10...10)
-    var bonusDefense = Int.random(in: -10...10)
+    var bonusAttack = Int.random(in: -5...5)
+    var bonusDefense = Int.random(in: -5...5)
   
-    //Burası henüz kullanılmıyor!
     var tacticsBonusAttack = Int.random(in: 0...20)
     var tacticsBonusPlan = Int.random(in: 0...5)
+    
+    ///Dizinin ilk elemanı  bize atack ikinci elemanı defans değişimini verecek
+    ///Bu değerler maçın skoruna göre değişecek
+    ///Ör: takım 2 farkla yeniliyorsa atak devreye giricek gibi her 15 dk da falan!
+    ///Bizim takımımızız böyle bir randomu olmayacak rakip için geçerli olcak
+    ///Rakibin total değerine eklencek, bizim total değerimize eklenmeyecek buradaki
+    ///Biz istediğimiz zaman seçebilceğimiz atak defans butonları olcak
+    var changeTacticsForAttack = [Int.random(in: 0...3),Int.random(in: -3...0)]
+    var changeTacticsForDefence = [Int.random(in: -3...0),Int.random(in: 0...3)]
     
 
     
@@ -62,8 +70,8 @@ class ManchesterUnited {
     let powerDefense = 82
   
 
-    var bonusAttack = Int.random(in: -10...10)
-    var bonusDefense = Int.random(in: -10...10)
+    var bonusAttack = Int.random(in: -5...5)
+    var bonusDefense = Int.random(in: -5...5)
   
     var tacticsBonusAttack = Int.random(in: 0...20)
     var tacticsBonusPlan = Int.random(in: 0...5)
@@ -81,8 +89,8 @@ class Arsenal {
     let powerMid = 84.0
     let powerDefense = 80
     
-    var bonusAttack = Int.random(in: -10...10)
-    var bonusDefense = Int.random(in: -10...10)
+    var bonusAttack = Int.random(in: -5...5)
+    var bonusDefense = Int.random(in: -5...5)
   
     var tacticsBonusAttack = Int.random(in: 0...20)
     var tacticsBonusPlan = Int.random(in: 0...5)
@@ -105,8 +113,8 @@ class Tottenham {
     let powerDefense = 80
   
 
-    var bonusAttack = Int.random(in: -10...10)
-    var bonusDefense = Int.random(in: -10...10)
+    var bonusAttack = Int.random(in: -5...5)
+    var bonusDefense = Int.random(in: -5...5)
   
     var tacticsBonusAttack = Int.random(in: 0...20)
     var tacticsBonusPlan = Int.random(in: 0...5)
@@ -124,8 +132,8 @@ class Chelsea {
     let powerDefense = 84
   
 
-    var bonusAttack = Int.random(in: -10...10)
-    var bonusDefense = Int.random(in: -10...10)
+    var bonusAttack = Int.random(in: -5...5)
+    var bonusDefense = Int.random(in: -5...5)
   
     var tacticsBonusAttack = Int.random(in: 0...20)
     var tacticsBonusPlan = Int.random(in: 0...5)
@@ -144,8 +152,8 @@ class Liverpool {
     let powerDefense = 87
   
 
-    var bonusAttack = Int.random(in: -10...10)
-    var bonusDefense = Int.random(in: -10...10)
+    var bonusAttack = Int.random(in: -5...5)
+    var bonusDefense = Int.random(in: -5...5)
   
     var tacticsBonusAttack = Int.random(in: 0...20)
     var tacticsBonusPlan = Int.random(in: 0...5)
@@ -163,8 +171,8 @@ class RealMadrid {
     let powerDefense = 84
   
 
-    var bonusAttack = Int.random(in: -10...10)
-    var bonusDefense = Int.random(in: -10...10)
+    var bonusAttack = Int.random(in: -5...5)
+    var bonusDefense = Int.random(in: -5...5)
   
     var tacticsBonusAttack = Int.random(in: 0...20)
     var tacticsBonusPlan = Int.random(in: 0...5)
@@ -183,8 +191,8 @@ class Barcelona {
     let powerDefense = 82
   
 
-    var bonusAttack = Int.random(in: -10...10)
-    var bonusDefense = Int.random(in: -10...10)
+    var bonusAttack = Int.random(in: -5...5)
+    var bonusDefense = Int.random(in: -5...5)
   
     var tacticsBonusAttack = Int.random(in: 0...20)
     var tacticsBonusPlan = Int.random(in: 0...5)
@@ -202,8 +210,8 @@ class AtleticoMadrid {
     let powerDefense = 80
   
 
-    var bonusAttack = Int.random(in: -10...10)
-    var bonusDefense = Int.random(in: -10...10)
+    var bonusAttack = Int.random(in: -5...5)
+    var bonusDefense = Int.random(in: -5...5)
   
     var tacticsBonusAttack = Int.random(in: 0...20)
     var tacticsBonusPlan = Int.random(in: 0...5)
@@ -222,8 +230,8 @@ class Inter {
     let powerDefense = 83
   
 
-    var bonusAttack = Int.random(in: -10...10)
-    var bonusDefense = Int.random(in: -10...10)
+    var bonusAttack = Int.random(in: -5...5)
+    var bonusDefense = Int.random(in: -5...5)
   
     var tacticsBonusAttack = Int.random(in: 0...20)
     var tacticsBonusPlan = Int.random(in: 0...5)
@@ -240,8 +248,8 @@ class Milan {
     let powerDefense = 79
   
 
-    var bonusAttack = Int.random(in: -10...10)
-    var bonusDefense = Int.random(in: -10...10)
+    var bonusAttack = Int.random(in: -5...5)
+    var bonusDefense = Int.random(in: -5...5)
   
     var tacticsBonusAttack = Int.random(in: 0...20)
     var tacticsBonusPlan = Int.random(in: 0...5)
@@ -259,8 +267,8 @@ class Napoli {
     let powerDefense = 80
   
 
-    var bonusAttack = Int.random(in: -10...10)
-    var bonusDefense = Int.random(in: -10...10)
+    var bonusAttack = Int.random(in: -5...5)
+    var bonusDefense = Int.random(in: -5...5)
   
     var tacticsBonusAttack = Int.random(in: 0...20)
     var tacticsBonusPlan = Int.random(in: 0...5)
@@ -279,8 +287,8 @@ class Juventus {
     let powerDefense = 82
   
 
-    var bonusAttack = Int.random(in: -10...10)
-    var bonusDefense = Int.random(in: -10...10)
+    var bonusAttack = Int.random(in: -5...5)
+    var bonusDefense = Int.random(in: -5...5)
   
     var tacticsBonusAttack = Int.random(in: 0...20)
     var tacticsBonusPlan = Int.random(in: 0...5)
@@ -298,8 +306,8 @@ class PSG {
     let powerDefense = 83
   
 
-    var bonusAttack = Int.random(in: -10...10)
-    var bonusDefense = Int.random(in: -10...10)
+    var bonusAttack = Int.random(in: -5...5)
+    var bonusDefense = Int.random(in: -5...5)
   
     var tacticsBonusAttack = Int.random(in: 0...20)
     var tacticsBonusPlan = Int.random(in: 0...5)
@@ -317,8 +325,8 @@ class BorussiaDortmund {
     let powerDefense = 80
   
 
-    var bonusAttack = Int.random(in: -10...10)
-    var bonusDefense = Int.random(in: -10...10)
+    var bonusAttack = Int.random(in: -5...5)
+    var bonusDefense = Int.random(in: -5...5)
   
     var tacticsBonusAttack = Int.random(in: 0...20)
     var tacticsBonusPlan = Int.random(in: 0...5)
@@ -336,8 +344,8 @@ class BayernMünchen {
     let powerDefense = 82
   
 
-    var bonusAttack = Int.random(in: -10...10)
-    var bonusDefense = Int.random(in: -10...10)
+    var bonusAttack = Int.random(in: -5...5)
+    var bonusDefense = Int.random(in: -5...5)
   
     var tacticsBonusAttack = Int.random(in: 0...20)
     var tacticsBonusPlan = Int.random(in: 0...5)

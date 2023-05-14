@@ -31,6 +31,8 @@ class Match1ViewController: UIViewController {
     //Ve dizisi
     var matchArray = [String]()
     
+    var taraftarImage = UIImageView()
+    
     ///Takım Skorboardları için
     var scoreBoardImage = UIImageView()
     var leftTeamScore = 0
@@ -71,9 +73,26 @@ class Match1ViewController: UIViewController {
     
     var matchText = ""
     
+    ///Maç içi defans-orta-atak değişimi için background label
+    var labelBackGroundLeft = UILabel()
+    var labelBackGroundCenter = UILabel()
+    var labelBackGroundRight = UILabel()
+    var labelDefense = UILabel()
+    var labelBalance = UILabel()
+    var labelAttack = UILabel()
+    
+    ///Maç içinde seçilen atak defans denge değerlerine göre bu değerler değişecek
+    ///Ve bunlar total değerimizi etkileyecek!
+    ///Butonlara basınca bu değerler değişecek ve bir sonraki 15 dakika için yeni total değeri oynanmuş olcak!
+    ///rakiplerimizin bu değerlerini 'TeamSettings' kısmında açıkladım
+    var attackValueInTheMatch = 0
+    var defenseValueInTheMatch = 0
+    
+    
     ///Diğer classlarda değişim yapabilmek için sharedlar
     var controls = Controls.sharedControls
     var controlsMyTeam = ControlsMyTeam.sharedControlsMyTeam
+    var controlsPoinsAndAverages = ControlGrupPointsAndAverages.sharedControlPoinsAndAverages
     
     //MARK: ViewDidLoad
     
@@ -87,6 +106,57 @@ class Match1ViewController: UIViewController {
         finalDefense = controlsMyTeam.finalDefense
         print("Shareddan gelen atack \(controlsMyTeam.finalAttack)")
         print("Shateddan gelen defans \(controlsMyTeam.finalDefense)")
+        
+       
+        labelBackGroundLeft.frame = CGRect(x: width * 0.04, y: height * 0.22, width: width * 0.22, height: height * 0.2)
+        labelBackGroundLeft.layer.cornerRadius = 14
+        labelBackGroundLeft.layer.backgroundColor = CGColor(red: 0, green: 0, blue: 1, alpha: 1)
+        
+        labelBackGroundCenter.frame = CGRect(x: width * 0.5 - (width * 0.22)/2, y: height * 0.22, width: width * 0.22, height: height * 0.2)
+        labelBackGroundCenter.layer.cornerRadius = 14
+        labelBackGroundCenter.layer.backgroundColor = CGColor(red: 0, green: 0, blue: 1, alpha: 1)
+        
+        labelBackGroundRight.frame = CGRect(x: width * 0.74, y: height * 0.22, width: width * 0.22, height: height * 0.2)
+        labelBackGroundRight.layer.cornerRadius = 14
+        labelBackGroundRight.layer.backgroundColor = CGColor(red: 0, green: 0, blue: 1, alpha: 1)
+        
+        labelAttack.frame = CGRect(x: width * 0.75, y: height * 0.225, width: width * 0.20, height: height * 0.06)
+        labelAttack.layer.backgroundColor = CGColor(red: 0, green: 0.7, blue: 1, alpha: 1)
+        labelAttack.layer.cornerRadius = 14
+        
+        labelBalance.frame = CGRect(x: width * 0.51 - (width * 0.22)/2, y: height * 0.225, width: width * 0.20, height: height * 0.06)
+        labelBalance.layer.backgroundColor = CGColor(red: 0, green: 0.7, blue: 1, alpha: 1)
+        labelBalance.layer.cornerRadius = 14
+        
+        labelAttack.text = "Hücum +"
+        labelBalance.text = "Denge"
+        labelDefense.text = "Defans +"
+        labelAttack.textColor = .white
+        labelDefense.textColor = .white
+        labelBalance.textColor = .white
+        labelAttack.textAlignment = .center
+        labelDefense.textAlignment = .center
+        labelBalance.textAlignment = .center
+        
+        labelAttack.isUserInteractionEnabled = true
+        labelBalance.isUserInteractionEnabled = true
+        labelDefense.isUserInteractionEnabled = true
+        
+        ///Hiç buton ekleme labela gestureRecognize ekle
+        //let tapTacticsRecognizer = UITapGestureRecognizer
+        //labelAttack.addGestureRecognizer(<#T##gestureRecognizer: UIGestureRecognizer##UIGestureRecognizer#>)
+        
+        labelDefense.frame = CGRect(x: width * 0.05, y: height * 0.225, width: width * 0.20, height: height * 0.06)
+        labelDefense.layer.backgroundColor = CGColor(red: 0, green: 0.7, blue: 1, alpha: 1)
+        labelDefense.layer.cornerRadius = 14
+        
+        
+        view.addSubview(labelBackGroundLeft)
+        view.addSubview(labelBackGroundCenter)
+        view.addSubview(labelBackGroundRight)
+        view.addSubview(labelBalance)
+        view.addSubview(labelAttack)
+        view.addSubview(labelDefense)
         
         startMatch.backgroundColor = .black
         startMatch.frame = CGRect(x: width * 0.5 - (width * 0.3)/2, y: height * 0.9, width: width * 0.3, height: height * 0.08)
@@ -107,41 +177,43 @@ class Match1ViewController: UIViewController {
         matchLabel.frame = CGRect(x: width * 0.5 - (width * 0.95)/2, y: height * 0.07, width: width * 0.95, height: height * 0.1)
         matchLabel.textAlignment = .center
         view.addSubview(matchLabel)
-
-      
         
         rightSide.image = UIImage(named: "right")
         leftSide.image = UIImage(named: "left")
         ball.image = UIImage(named: "ball")
         grass.image = UIImage(named: "grass")
         
-        grass.frame = CGRect(x: width * 0.1, y: height * 0.705, width: width * 0.8, height: height * 0.04)
-        rightSide.frame = CGRect(x: width * 0.78, y: height * 0.65, width: width * 0.18, height: height * 0.1)
-        leftSide.frame = CGRect(x: width * 0.04, y: height * 0.65, width: width * 0.18, height: height * 0.1)
-        ball.frame = CGRect(x: width * 0.5 - (width * 0.08)/2, y: height * 0.69, width: width * 0.08, height: height * 0.05)
+        grass.frame = CGRect(x: width * 0.1, y: height * 0.835, width: width * 0.8, height: height * 0.04)
+        rightSide.frame = CGRect(x: width * 0.78, y: height * 0.78, width: width * 0.18, height: height * 0.1)
+        leftSide.frame = CGRect(x: width * 0.04, y: height * 0.78, width: width * 0.18, height: height * 0.1)
+        ball.frame = CGRect(x: width * 0.5 - (width * 0.08)/2, y: height * 0.82, width: width * 0.08, height: height * 0.05)
         
+        taraftarImage.image = UIImage(named: "taraftar")
+        taraftarImage.frame = CGRect(x: 0, y: height * 0.59, width: width, height: height * 0.2)
         
+        view.addSubview(taraftarImage)
         view.addSubview(rightSide)
         view.addSubview(leftSide)
         view.addSubview(grass)
         view.addSubview(ball)
+       
+        
         
         
         scoreBoardImage.image = UIImage(named: "scoreboard")
-        scoreBoardImage.frame = CGRect(x: width * 0.5 - (width * 0.55)/2, y: height * 0.25, width: width * 0.55, height: height * 0.2)
+        scoreBoardImage.frame = CGRect(x: width * 0.5 - (width * 0.55)/2, y: height * 0.455, width: width * 0.55, height: height * 0.2)
         
         leftTeamScoreLabel.textAlignment = .center
         rightTeamScoreLabel.textAlignment = .center
         rightTeamScoreLabel.textColor = .black
         leftTeamScoreLabel.textColor = .black
         
-        leftTeamScoreLabel.frame = CGRect(x: width * 0.3, y: height * 0.32, width: width * 0.155, height: height * 0.05)
+        leftTeamScoreLabel.frame = CGRect(x: width * 0.3, y: height * 0.525, width: width * 0.155, height: height * 0.05)
         
-        rightTeamScoreLabel.frame = CGRect(x: width * 0.55, y: height * 0.32, width: width * 0.155, height: height * 0.05)
+        rightTeamScoreLabel.frame = CGRect(x: width * 0.55, y: height * 0.525, width: width * 0.155, height: height * 0.05)
         rightTeamScoreLabel.text = rightTeamScore.description
         leftTeamScoreLabel.text = leftTeamScore.description
         
-      
         
         view.addSubview(scoreBoardImage)
         view.addSubview(rightTeamScoreLabel)
@@ -172,6 +244,7 @@ class Match1ViewController: UIViewController {
             controls.match1Enable = false
             
             if minute > 90 {
+                matchFinishedFunc()
                 navigationController?.popViewController(animated: true)
             }
             minute += 1
@@ -565,6 +638,12 @@ class Match1ViewController: UIViewController {
         }
     }
     
+    func matchFuncOneOfPozitifOneOfNegatif() {
+        
+        
+        
+    }
+    
     
     func matchFuncInEvery3Minutes() {
         //Benim Golüm
@@ -578,7 +657,68 @@ class Match1ViewController: UIViewController {
             matchFuncAllOfNegatif()
         }else {
             //Demekki biri (+) biri (-)
+            matchFuncOneOfPozitifOneOfNegatif()
         }
+    }
+    
+    
+    ///Bu fonksiyon maç bitiminde çağrılcak
+    ///Bu fonksiyon sayesinde maç sonuçlarına göre puan durumu belirlemek için
+    ///Bir control class'sı açabiliriz!
+    func matchFinishedFunc() {
+        
+        if leftTeamScore > rightTeamScore {
+            //Maçı ben kazandım
+            controlsPoinsAndAverages.myTeanPoints += 3
+            
+            //averaj eklemesi
+            controlsPoinsAndAverages.MyteamAverages += (leftTeamScore - rightTeamScore)
+            controlsPoinsAndAverages.team1Averages -= (leftTeamScore - rightTeamScore)
+            
+        }else if leftTeamScore < rightTeamScore {
+            //Maçı rakip kazandı
+            controlsPoinsAndAverages.team1Points += 3
+            
+            //rakibe averaj eklemesi
+            controlsPoinsAndAverages.MyteamAverages -= (rightTeamScore - leftTeamScore)
+            controlsPoinsAndAverages.team1Averages += (rightTeamScore - leftTeamScore)
+            
+        }else {
+            //Maç berabere
+            controlsPoinsAndAverages.myTeanPoints += 1
+            controlsPoinsAndAverages.team1Points += 1
+        }
+        
+        //Bizim Maç tamam ancak gruptaki diğer 2 takımın da maçı var !
+        //Random!
+        
+        var otherMatch = ["team2", "team3","Berabere"]
+        var randomWinner = otherMatch.randomElement()!
+        if randomWinner == "team2" {
+            controlsPoinsAndAverages.team2Points += 3
+            
+            //Averaj
+            var averageArray = [1,1,1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,4,5,6]
+            var randomAverage = averageArray.randomElement()!
+            controlsPoinsAndAverages.team2Averages += randomAverage
+            controlsPoinsAndAverages.team3Averages -= randomAverage
+            
+        }else if randomWinner == "team3" {
+            controlsPoinsAndAverages.team3Points += 3
+            
+            //Averaj
+            var averageArray = [1,1,1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,4,5,6]
+            var randomAverage = averageArray.randomElement()!
+            controlsPoinsAndAverages.team2Averages -= randomAverage
+            controlsPoinsAndAverages.team3Averages += randomAverage
+            
+            
+        }else {
+            //Berabere
+            controlsPoinsAndAverages.team2Points += 1
+            controlsPoinsAndAverages.team3Points += 1
+        }
+        
     }
     
     

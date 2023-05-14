@@ -29,6 +29,8 @@ class Match3ViewController: UIViewController {
     //Ve dizisi
     var matchArray = [String]()
     
+    var taraftarImage = UIImageView()
+    
     ///Takım Skorboardları için
     var scoreBoardImage = UIImageView()
     var leftTeamScore = 0
@@ -69,8 +71,25 @@ class Match3ViewController: UIViewController {
     
     var matchText = ""
     
+    ///Maç içi defans-orta-atak değişimi için background label
+    var labelBackGroundLeft = UILabel()
+    var labelBackGroundCenter = UILabel()
+    var labelBackGroundRight = UILabel()
+    var labelDefense = UILabel()
+    var labelBalance = UILabel()
+    var labelAttack = UILabel()
+    
+    ///Maç içinde seçilen atak defans denge değerlerine göre bu değerler değişecek
+    ///Ve bunlar total değerimizi etkileyecek!
+    ///Butonlara basınca bu değerler değişecek ve bir sonraki 15 dakika için yeni total değeri oynanmuş olcak!
+    ///rakiplerimizin bu değerlerini 'TeamSettings' kısmında açıkladım
+    var attackValueInTheMatch = 0
+    var defenseValueInTheMatch = 0
+    
     var controls = Controls.sharedControls
     var controlsMyTeam = ControlsMyTeam.sharedControlsMyTeam
+    var controlsPoinsAndAverages = ControlGrupPointsAndAverages.sharedControlPoinsAndAverages
+    
 
     
     override func viewDidLoad() {
@@ -83,6 +102,57 @@ class Match3ViewController: UIViewController {
         finalDefense = controlsMyTeam.finalDefense
         print("Shareddan gelen atack \(controlsMyTeam.finalAttack)")
         print("Shateddan gelen defans \(controlsMyTeam.finalDefense)")
+        
+        labelBackGroundLeft.frame = CGRect(x: width * 0.04, y: height * 0.22, width: width * 0.22, height: height * 0.2)
+        labelBackGroundLeft.layer.cornerRadius = 14
+        labelBackGroundLeft.layer.backgroundColor = CGColor(red: 0, green: 0, blue: 1, alpha: 1)
+        
+        labelBackGroundCenter.frame = CGRect(x: width * 0.5 - (width * 0.22)/2, y: height * 0.22, width: width * 0.22, height: height * 0.2)
+        labelBackGroundCenter.layer.cornerRadius = 14
+        labelBackGroundCenter.layer.backgroundColor = CGColor(red: 0, green: 0, blue: 1, alpha: 1)
+        
+        labelBackGroundRight.frame = CGRect(x: width * 0.74, y: height * 0.22, width: width * 0.22, height: height * 0.2)
+        labelBackGroundRight.layer.cornerRadius = 14
+        labelBackGroundRight.layer.backgroundColor = CGColor(red: 0, green: 0, blue: 1, alpha: 1)
+        
+        labelAttack.frame = CGRect(x: width * 0.75, y: height * 0.225, width: width * 0.20, height: height * 0.06)
+        labelAttack.layer.backgroundColor = CGColor(red: 0, green: 0.7, blue: 1, alpha: 1)
+        labelAttack.layer.cornerRadius = 14
+        
+        labelBalance.frame = CGRect(x: width * 0.51 - (width * 0.22)/2, y: height * 0.225, width: width * 0.20, height: height * 0.06)
+        labelBalance.layer.backgroundColor = CGColor(red: 0, green: 0.7, blue: 1, alpha: 1)
+        labelBalance.layer.cornerRadius = 14
+        
+        labelAttack.text = "Hücum +"
+        labelBalance.text = "Denge"
+        labelDefense.text = "Defans +"
+        labelAttack.textColor = .white
+        labelDefense.textColor = .white
+        labelBalance.textColor = .white
+        labelAttack.textAlignment = .center
+        labelDefense.textAlignment = .center
+        labelBalance.textAlignment = .center
+        
+        labelAttack.isUserInteractionEnabled = true
+        labelBalance.isUserInteractionEnabled = true
+        labelDefense.isUserInteractionEnabled = true
+        
+        ///Hiç buton ekleme labela gestureRecognize ekle
+        //let tapTacticsRecognizer = UITapGestureRecognizer
+        //labelAttack.addGestureRecognizer(<#T##gestureRecognizer: UIGestureRecognizer##UIGestureRecognizer#>)
+        
+        labelDefense.frame = CGRect(x: width * 0.05, y: height * 0.225, width: width * 0.20, height: height * 0.06)
+        labelDefense.layer.backgroundColor = CGColor(red: 0, green: 0.7, blue: 1, alpha: 1)
+        labelDefense.layer.cornerRadius = 14
+        
+        
+        view.addSubview(labelBackGroundLeft)
+        view.addSubview(labelBackGroundCenter)
+        view.addSubview(labelBackGroundRight)
+        view.addSubview(labelBalance)
+        view.addSubview(labelAttack)
+        view.addSubview(labelDefense)
+        
         
         
         startMatch.backgroundColor = .black
@@ -112,28 +182,36 @@ class Match3ViewController: UIViewController {
         ball.image = UIImage(named: "ball")
         grass.image = UIImage(named: "grass")
         
-        grass.frame = CGRect(x: width * 0.1, y: height * 0.705, width: width * 0.8, height: height * 0.04)
-        rightSide.frame = CGRect(x: width * 0.78, y: height * 0.65, width: width * 0.18, height: height * 0.1)
-        leftSide.frame = CGRect(x: width * 0.04, y: height * 0.65, width: width * 0.18, height: height * 0.1)
-        ball.frame = CGRect(x: width * 0.5 - (width * 0.08)/2, y: height * 0.69, width: width * 0.08, height: height * 0.05)
+        rightSide.image = UIImage(named: "right")
+        leftSide.image = UIImage(named: "left")
+        ball.image = UIImage(named: "ball")
+        grass.image = UIImage(named: "grass")
         
+        grass.frame = CGRect(x: width * 0.1, y: height * 0.835, width: width * 0.8, height: height * 0.04)
+        rightSide.frame = CGRect(x: width * 0.78, y: height * 0.78, width: width * 0.18, height: height * 0.1)
+        leftSide.frame = CGRect(x: width * 0.04, y: height * 0.78, width: width * 0.18, height: height * 0.1)
+        ball.frame = CGRect(x: width * 0.5 - (width * 0.08)/2, y: height * 0.82, width: width * 0.08, height: height * 0.05)
         
+        taraftarImage.image = UIImage(named: "taraftar")
+        taraftarImage.frame = CGRect(x: 0, y: height * 0.59, width: width, height: height * 0.2)
+        
+        view.addSubview(taraftarImage)
         view.addSubview(rightSide)
         view.addSubview(leftSide)
         view.addSubview(ball)
         view.addSubview(grass)
         
         scoreBoardImage.image = UIImage(named: "scoreboard")
-        scoreBoardImage.frame = CGRect(x: width * 0.5 - (width * 0.55)/2, y: height * 0.25, width: width * 0.55, height: height * 0.2)
+        scoreBoardImage.frame = CGRect(x: width * 0.5 - (width * 0.55)/2, y: height * 0.455, width: width * 0.55, height: height * 0.2)
         
         leftTeamScoreLabel.textAlignment = .center
         rightTeamScoreLabel.textAlignment = .center
         rightTeamScoreLabel.textColor = .black
         leftTeamScoreLabel.textColor = .black
         
-        leftTeamScoreLabel.frame = CGRect(x: width * 0.3, y: height * 0.32, width: width * 0.155, height: height * 0.05)
+        leftTeamScoreLabel.frame = CGRect(x: width * 0.3, y: height * 0.525, width: width * 0.155, height: height * 0.05)
         
-        rightTeamScoreLabel.frame = CGRect(x: width * 0.55, y: height * 0.32, width: width * 0.155, height: height * 0.05)
+        rightTeamScoreLabel.frame = CGRect(x: width * 0.55, y: height * 0.525, width: width * 0.155, height: height * 0.05)
         rightTeamScoreLabel.text = rightTeamScore.description
         leftTeamScoreLabel.text = leftTeamScore.description
         
@@ -162,6 +240,7 @@ class Match3ViewController: UIViewController {
             controls.match3Enable = false
             
             if minute > 90 {
+                matchFinishedFunc()
                 navigationController?.popViewController(animated: true)
             }
             minute += 1
@@ -169,7 +248,7 @@ class Match3ViewController: UIViewController {
         }else {
             
             for _ in 1...5 {
-                matchFuncEveryInEvery3Minutes() //Sadece maç içinde çağrılcak
+                matchFuncInEvery3Minutes() //Sadece maç içinde çağrılcak
             }
             
             
@@ -419,73 +498,230 @@ class Match3ViewController: UIViewController {
         
     }
     
-    func matchFuncEveryInEvery3Minutes() {
+    func matchFuncAllOfPozitif() {
         
         //Benim Golüm
         var myGoal = finalAttack - RivalFinalDefense
         //Rakinim Gölü
         var rivalsGoal = RivalFinalAttack - finalDefense
         
-        if myGoal > 0 && rivalsGoal > 0 {
-            var totalAttempt = (myGoal + rivalsGoal) * 10
-            var myAttempt : Int = Int(myGoal * 10)
-            var rivalAttempt : Int = Int(rivalsGoal * 10)
-            scoreArray = [String]()
-            for _ in 1...myAttempt {
-                scoreArray.append(matchArray[0])
-            }
-            for _ in 1...rivalAttempt {
-                scoreArray.append(matchArray[1])
-            }
-            
-            scoreArray.shuffle()
-       
-            var element1 = scoreArray.randomElement()!
-            var element2 = scoreArray.randomElement()!
-            var element3 = scoreArray.randomElement()!
-            var element4 = scoreArray.randomElement()!
-            var element5 = scoreArray.randomElement()!
-            print(element1)
-            print(element2)
-            print(element3)
-            print(element4)
-            print(element5)
-            print("\n")
-            
-            var ScoreArray = [String]()
-            ScoreArray.append(element1)
-            ScoreArray.append(element2)
-            ScoreArray.append(element3)
-            ScoreArray.append(element4)
-            ScoreArray.append(element5)
-            
-            var set = Set(ScoreArray)
-            
-            if set.count < 2 {
-                //Gol olmuş
-                print("Gol olmuş")
-                
-                var golAtanTakim = ScoreArray[0] // Zaten her eleman aynı
-                if golAtanTakim == matchArray[0] {
-                    //Golü ben atmışım gol sol tarafa yazılır
-                    leftTeamScore += 1
-                    leftTeamScoreLabel.text = "\(leftTeamScore)"
-             
-                    
-                }else {
-                    //diğer durumda golü rakip atmıştır, gol sağa yazılır
-                    rightTeamScore += 1
-                    rightTeamScoreLabel.text = "\(rightTeamScore)"
-                }
-            }else {
-                //Gol olmamıs
-                print("Gol olmamıs")
-            }
+     
+        var totalAttempt = (myGoal + rivalsGoal) * 10
+        var myAttempt : Int = Int(myGoal * 10)
+        var rivalAttempt : Int = Int(rivalsGoal * 10)
+        scoreArray = [String]()
+        for _ in 1...myAttempt {
+            scoreArray.append(matchArray[0])
         }
+        for _ in 1...rivalAttempt {
+            scoreArray.append(matchArray[1])
+        }
+        
+        scoreArray.shuffle()
+   
+        var element1 = scoreArray.randomElement()!
+        var element2 = scoreArray.randomElement()!
+        var element3 = scoreArray.randomElement()!
+        var element4 = scoreArray.randomElement()!
+        var element5 = scoreArray.randomElement()!
+        print(element1)
+        print(element2)
+        print(element3)
+        print(element4)
+        print(element5)
+        print("\n")
+        
+        var ScoreArray = [String]()
+        ScoreArray.append(element1)
+        ScoreArray.append(element2)
+        ScoreArray.append(element3)
+        ScoreArray.append(element4)
+        ScoreArray.append(element5)
+        
+        var set = Set(ScoreArray)
+        
+        if set.count < 2 {
+            //Gol olmuş
+            print("Gol olmuş")
+            
+            var golAtanTakim = ScoreArray[0] // Zaten her eleman aynı
+            if golAtanTakim == matchArray[0] {
+                //Golü ben atmışım gol sol tarafa yazılır
+                leftTeamScore += 1
+                leftTeamScoreLabel.text = "\(leftTeamScore)"
+         
+                
+            }else {
+                //diğer durumda golü rakip atmıştır, gol sağa yazılır
+                rightTeamScore += 1
+                rightTeamScoreLabel.text = "\(rightTeamScore)"
+            }
+        }else {
+            //Gol olmamıs
+            print("Gol olmamıs")
+        }
+        
         
    
         
     }
+    
+    func matchFuncAllOfNegatif() {
+        
+        //Benim Golüm
+        var myGoal = finalAttack - RivalFinalDefense
+        //Rakinim Gölü
+        var rivalsGoal = RivalFinalAttack - finalDefense
+        
+        var newMyGoal = (-1.0) * myGoal
+        var newRivalsGoal = (-1.0) * rivalsGoal
+            
+        var totalAttempt = (newMyGoal + newRivalsGoal) * 10
+        var myAttempt : Int = Int(newMyGoal * 10)
+        var rivalAttempt : Int = Int(newRivalsGoal * 10)
+        scoreArray = [String]()
+            
+        //Herkes (-) olunca terseleme işlemi yapılcak!
+            
+        for _ in 1...myAttempt {
+            scoreArray.append(matchArray[1])
+        }
+        for _ in 1...rivalAttempt {
+            scoreArray.append(matchArray[0])
+        }
+            
+        scoreArray.shuffle()
+       
+        var element1 = scoreArray.randomElement()!
+        var element2 = scoreArray.randomElement()!
+        var element3 = scoreArray.randomElement()!
+        var element4 = scoreArray.randomElement()!
+        var element5 = scoreArray.randomElement()!
+        print(element1)
+        print(element2)
+        print(element3)
+        print(element4)
+        print(element5)
+        print("\n")
+        
+        //5li değerin birbirinden farklı mı değil mi diye öğreneceğiz!
+        var ScoreArray = [String]()
+        ScoreArray.append(element1)
+        ScoreArray.append(element2)
+        ScoreArray.append(element3)
+        ScoreArray.append(element4)
+        ScoreArray.append(element5)
+        
+        var set = Set(ScoreArray)
+        
+        if set.count < 2 {
+            //Gol olmuş
+            print("Gol olmuş")
+            
+            var golAtanTakim = ScoreArray[0] // Zaten her eleman aynı
+            if golAtanTakim == matchArray[0] {
+                //Golü ben atmışım gol sol tarafa yazılır
+                leftTeamScore += 1
+                leftTeamScoreLabel.text = "\(leftTeamScore)"
+            
+                
+            }else {
+                //diğer durumda golü rakip atmıştır, gol sağa yazılır
+                rightTeamScore += 1
+                rightTeamScoreLabel.text = "\(rightTeamScore)"
+            }
+        }else {
+            //Gol olmamıs
+            print("Gol olmamıs")
+        }
+    }
+    
+    func matchFuncOneOfPozitifOneOfNegatif() {
+        
+        
+        
+    }
+    
+    
+    func matchFuncInEvery3Minutes() {
+        //Benim Golüm
+        var myGoal = finalAttack - RivalFinalDefense
+        //Rakinim Gölü
+        var rivalsGoal = RivalFinalAttack - finalDefense
+        
+        if myGoal > 0 && rivalsGoal > 0 {
+            matchFuncAllOfPozitif()
+        }else if myGoal < 0 && rivalsGoal < 0 {
+            matchFuncAllOfNegatif()
+        }else {
+            //Demekki biri (+) biri (-)
+            matchFuncOneOfPozitifOneOfNegatif()
+        }
+    }
+    
+    
+    
+    ///Bu fonksiyon maç bitiminde çağrılcak
+    ///Bu fonksiyon sayesinde maç sonuçlarına göre puan durumu belirlemek için
+    ///Bir control class'sı açabiliriz!
+    func matchFinishedFunc() {
+        
+        if leftTeamScore > rightTeamScore {
+            //Maçı ben kazandım
+            controlsPoinsAndAverages.myTeanPoints += 3
+            
+            //averaj eklemesi
+            controlsPoinsAndAverages.MyteamAverages += (leftTeamScore - rightTeamScore)
+            controlsPoinsAndAverages.team3Averages -= (leftTeamScore - rightTeamScore)
+            
+        }else if leftTeamScore < rightTeamScore {
+            //Maçı rakip kazandı
+            controlsPoinsAndAverages.team3Points += 3
+            
+            //rakibe averaj eklemesi
+            controlsPoinsAndAverages.MyteamAverages -= (rightTeamScore - leftTeamScore)
+            controlsPoinsAndAverages.team3Averages += (rightTeamScore - leftTeamScore)
+            
+        }else {
+            //Maç berabere
+            controlsPoinsAndAverages.myTeanPoints += 1
+            controlsPoinsAndAverages.team3Points += 1
+        }
+        
+        //Bizim Maç tamam ancak gruptaki diğer 2 takımın da maçı var !
+        //Random!
+        
+        var otherMatch = ["team1", "team2","Berabere"]
+        var randomWinner = otherMatch.randomElement()!
+        if randomWinner == "team1" {
+            controlsPoinsAndAverages.team1Points += 3
+            
+            //Averaj
+            var averageArray = [1,1,1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,4,5,6]
+            var randomAverage = averageArray.randomElement()!
+            controlsPoinsAndAverages.team1Averages += randomAverage
+            controlsPoinsAndAverages.team2Averages -= randomAverage
+            
+        }else if randomWinner == "team2" {
+            controlsPoinsAndAverages.team2Points += 3
+            
+            //Averaj
+            var averageArray = [1,1,1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,4,5,6]
+            var randomAverage = averageArray.randomElement()!
+            controlsPoinsAndAverages.team1Averages -= randomAverage
+            controlsPoinsAndAverages.team2Averages += randomAverage
+            
+            
+        }else {
+            //Berabere
+            controlsPoinsAndAverages.team1Points += 1
+            controlsPoinsAndAverages.team2Points += 1
+        }
+        
+        
+        
+    }
+    
     
     func makeAlert(title: String,message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)

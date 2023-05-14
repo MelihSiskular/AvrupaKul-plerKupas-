@@ -73,13 +73,26 @@ class FixtureViewController: UIViewController {
     ///Eğer grup aşaması başarı ile tamamlanırsa Çeyrek finale gidececk buton
     var goQuarterFinals = UIButton()
     
+    ///Çeyrek Finale gitmek için ilk iki takım
+    var firstPosition = ""
+    var secondPosition = ""
+    
     ///Grup Aşamasının altında  bir açıklama
     var guideLabel = UILabel()
+    
+    
+  
+    
+    
     
     ///Diğer classlarda değişim yapabilmek için sharedlar
     var controls = Controls.sharedControls
     var controlsMyTeam = ControlsMyTeam.sharedControlsMyTeam
+    var controlsPoinsAndAverages = ControlGrupPointsAndAverages.sharedControlPoinsAndAverages
+    let shared = GroupStages.shared
+    var groupStages = GroupStages.shared
     
+  
     
     
     //MARK: ViewDidLoad
@@ -272,12 +285,25 @@ class FixtureViewController: UIViewController {
         view.addSubview(goQuarterFinals)
         view.addSubview(guideLabel)
         
+      
 
        
         groupFirstPosition.text = myTeam
-        randomGroups()
-        whatIsYourGroup()
-        fixture()
+        if controls.isSelectTeam  {
+            //Eğer ki selectTeam True ise yani takımı seçtiysek eski veriler gözüksün
+            sharedMyGroup()
+            
+            
+            
+        }else {
+            
+            randomGroups()
+            whatIsYourGroup()
+            fixture()
+            controls.isSelectTeam = true
+            
+        }
+     
         
         
  
@@ -323,10 +349,339 @@ class FixtureViewController: UIViewController {
             buttonMatch3.alpha = 0.5
             //Son maçtan geldiğimizde bunu da kapatmamız lazım!
             
+            //Eğer çeyrek finale gidemezsek orada başka bişi yazsın 'Bir dahaki sefere' gibi
+            teamsWhichPassTheGroupStage()
+            print("A Grubu:",groupStages.groupAfirstSecond)
+            print("B Grubu:",groupStages.groupBfirstSecond)
+            print("C Grubu:",groupStages.groupCfirstSecond)
+            print("D Grubu:",groupStages.groupDfirstSecond)
+            
+            titleOfQuarterFinalButton()
+            
         }
+        groupFirstPoint.text = "\(controlsPoinsAndAverages.myTeanPoints)"
+        groupSecondPoint.text = "\(controlsPoinsAndAverages.team3Points)"
+        groupThirdPoint.text = "\(controlsPoinsAndAverages.team2Points)"
+        groupFourthPoint.text = "\(controlsPoinsAndAverages.team1Points)"
+       
+        groupFirstAverage.text = "\(controlsPoinsAndAverages.MyteamAverages)"
+        groupSecondAverage.text = "\(controlsPoinsAndAverages.team3Averages)"
+        groupThirdAverage.text = "\(controlsPoinsAndAverages.team2Averages)"
+        groupFourthAverage.text = "\(controlsPoinsAndAverages.team1Averages)"
+        
+       
+        
     }
     
     //MARK: FUNC
+    
+    func whoWasInMyGroupA(GroupA: Array<String>) {
+        var myGroupA = GroupA
+        
+   
+        
+       
+        if myGroupA.contains(myTeam) {
+           let index = myGroupA.firstIndex(of: myTeam)
+            myGroupA.remove(at: index!)
+        
+            for i in myGroupA {
+                
+               if groupSecondPosition.text == "" {
+                    groupSecondPosition.text = String(i)
+                }else if groupThirdPosition.text == "" {
+                    groupThirdPosition.text = String(i)
+                }else if groupFourthPosition.text == "" {
+                    groupFourthPosition.text = String(i)
+                }
+            }
+            
+            groupPositionOrderA()
+            var team1 = myGroupA.last!
+            myGroupA.removeLast()
+            var team2 = myGroupA.last!
+            myGroupA.removeLast()
+            var team3 = myGroupA.last!
+            myGroupA.removeLast()
+            
+            match1 = "\(myTeam) Vs \(team1)"
+            match2 = "\(myTeam) Vs \(team2)"
+            match3 = "\(myTeam) Vs \(team3)"
+            match1Array.append(myTeam)
+            match1Array.append(team1)
+            match2Array.append(myTeam)
+            match2Array.append(team2)
+            match3Array.append(myTeam)
+            match3Array.append(team3)
+            
+            
+            print(match1)
+            print(match2)
+            print(match3)
+            
+            matchLabel1.text = match1
+            matchLabel2.text = match2
+            matchLabel3.text = match3
+            
+           
+            
+            
+        }
+        
+    }
+    func whoWasInMyGroupB(GroupB: Array<String>) {
+        
+        var myGroupB = GroupB
+        
+    
+        
+       
+        if myGroupB.contains(myTeam) {
+           let index = myGroupB.firstIndex(of: myTeam)
+            myGroupB.remove(at: index!)
+        
+            for i in myGroupB {
+                
+               if groupSecondPosition.text == "" {
+                    groupSecondPosition.text = String(i)
+                }else if groupThirdPosition.text == "" {
+                    groupThirdPosition.text = String(i)
+                }else if groupFourthPosition.text == "" {
+                    groupFourthPosition.text = String(i)
+                }
+            }
+            
+            groupPositionOrderB()
+            var team1 = myGroupB.last!
+            myGroupB.removeLast()
+            var team2 = myGroupB.last!
+            myGroupB.removeLast()
+            var team3 = myGroupB.last!
+            myGroupB.removeLast()
+            
+            match1 = "\(myTeam) Vs \(team1)"
+            match2 = "\(myTeam) Vs \(team2)"
+            match3 = "\(myTeam) Vs \(team3)"
+            match1Array.append(myTeam)
+            match1Array.append(team1)
+            match2Array.append(myTeam)
+            match2Array.append(team2)
+            match3Array.append(myTeam)
+            match3Array.append(team3)
+            
+            
+            print(match1)
+            print(match2)
+            print(match3)
+            
+            matchLabel1.text = match1
+            matchLabel2.text = match2
+            matchLabel3.text = match3
+            
+           
+            
+            
+        }
+        
+    }
+    func whoWasInMyGroupC(GroupC: Array<String>) {
+        
+        var myGroupC = GroupC
+        
+     
+        
+       
+        if myGroupC.contains(myTeam) {
+           let index = myGroupC.firstIndex(of: myTeam)
+            myGroupC.remove(at: index!)
+        
+            for i in myGroupC {
+                
+               if groupSecondPosition.text == "" {
+                    groupSecondPosition.text = String(i)
+                }else if groupThirdPosition.text == "" {
+                    groupThirdPosition.text = String(i)
+                }else if groupFourthPosition.text == "" {
+                    groupFourthPosition.text = String(i)
+                }
+            }
+            
+            groupPositionOrderC()
+            var team1 = myGroupC.last!
+            myGroupC.removeLast()
+            var team2 = myGroupC.last!
+            myGroupC.removeLast()
+            var team3 = myGroupC.last!
+            myGroupC.removeLast()
+            
+            match1 = "\(myTeam) Vs \(team1)"
+            match2 = "\(myTeam) Vs \(team2)"
+            match3 = "\(myTeam) Vs \(team3)"
+            match1Array.append(myTeam)
+            match1Array.append(team1)
+            match2Array.append(myTeam)
+            match2Array.append(team2)
+            match3Array.append(myTeam)
+            match3Array.append(team3)
+            
+            
+            print(match1)
+            print(match2)
+            print(match3)
+            
+            matchLabel1.text = match1
+            matchLabel2.text = match2
+            matchLabel3.text = match3
+            
+           
+            
+            
+        }
+        
+    }
+    func whoWasInMyGroupD(GroupD: Array<String>) {
+        
+        var myGroupD = GroupD
+        
+   
+        
+       
+        if myGroupD.contains(myTeam) {
+           let index = myGroupD.firstIndex(of: myTeam)
+            myGroupD.remove(at: index!)
+        
+            for i in myGroupD {
+                
+               if groupSecondPosition.text == "" {
+                    groupSecondPosition.text = String(i)
+                }else if groupThirdPosition.text == "" {
+                    groupThirdPosition.text = String(i)
+                }else if groupFourthPosition.text == "" {
+                    groupFourthPosition.text = String(i)
+                }
+            }
+            
+            groupPositionOrderD()
+            var team1 = myGroupD.last!
+            myGroupD.removeLast()
+            var team2 = myGroupD.last!
+            myGroupD.removeLast()
+            var team3 = myGroupD.last!
+            myGroupD.removeLast()
+            
+            match1 = "\(myTeam) Vs \(team1)"
+            match2 = "\(myTeam) Vs \(team2)"
+            match3 = "\(myTeam) Vs \(team3)"
+            match1Array.append(myTeam)
+            match1Array.append(team1)
+            match2Array.append(myTeam)
+            match2Array.append(team2)
+            match3Array.append(myTeam)
+            match3Array.append(team3)
+            
+            
+            print(match1)
+            print(match2)
+            print(match3)
+            
+            matchLabel1.text = match1
+            matchLabel2.text = match2
+            matchLabel3.text = match3
+            
+           
+            
+            
+        }
+        
+    }
+    
+    func sharedMyGroup() {
+        
+        //Gruplar kaydedilcek
+        var savedGroupA = self.shared.groupA
+        var savedGroupB = self.shared.groupB
+        var savedGroupC = self.shared.groupC
+        var savedGroupD = self.shared.groupD
+        
+        for i in savedGroupA {
+            if myTeam == i {
+                groupNameLabel.text = "A Grubu"
+                whoWasInMyGroupA(GroupA: shared.groupA)
+            }
+        }
+        for i in savedGroupB {
+            if myTeam == i {
+                groupNameLabel.text = "B Grubu"
+                whoWasInMyGroupB(GroupB: shared.groupB)
+            }
+        }
+        for i in savedGroupC {
+            if myTeam == i {
+                groupNameLabel.text = "C Grubu"
+                whoWasInMyGroupC(GroupC: shared.groupC)
+            }
+        }
+        for i in savedGroupD {
+            if myTeam == i {
+                groupNameLabel.text = "D Grubu"
+                whoWasInMyGroupD(GroupD: shared.groupD)
+            }
+        }
+        
+    }
+    
+    func titleOfQuarterFinalButton() {
+        
+        if myGroup == "A Grubu" {
+            
+            if groupStages.groupAfirstSecond.contains(myTeam) {
+                //Çeyrek Finale gideceğim
+                goQuarterFinals.isUserInteractionEnabled = true
+                goQuarterFinals.alpha = 1
+            }else {
+                //Çeyrek Finale gidemeyeceğim
+                goQuarterFinals.setTitle("Bir Dahaki Sefere", for: UIControl.State.normal)
+            }
+            
+        }else if myGroup == "B Grubu" {
+            
+            if groupStages.groupBfirstSecond.contains(myTeam) {
+                //Çeyrek Finale gideceğim
+                goQuarterFinals.isUserInteractionEnabled = true
+                goQuarterFinals.alpha = 1
+            }else {
+                //Çeyrek Finale gidemeyeceğim
+                goQuarterFinals.setTitle("Bir Dahaki Sefere", for: UIControl.State.normal)
+            }
+
+            
+        }else if myGroup == "C Grubu" {
+            
+            if groupStages.groupCfirstSecond.contains(myTeam) {
+                //Çeyrek Finale gideceğim
+                goQuarterFinals.isUserInteractionEnabled = true
+                goQuarterFinals.alpha = 1
+            }else {
+                //Çeyrek Finale gidemeyeceğim
+                goQuarterFinals.setTitle("Bir Dahaki Sefere", for: UIControl.State.normal)
+            }
+
+            
+        }else if myGroup == "D Grubu" {
+            
+            if groupStages.groupDfirstSecond.contains(myTeam) {
+                //Çeyrek Finale gideceğim
+                goQuarterFinals.isUserInteractionEnabled = true
+                goQuarterFinals.alpha = 1
+            }else {
+                //Çeyrek Finale gidemeyeceğim
+                goQuarterFinals.setTitle("Bir Dahaki Sefere", for: UIControl.State.normal)
+            }
+
+            
+        }
+        
+    }
     
     @objc
     func goToMatch1() {
@@ -376,7 +731,7 @@ class FixtureViewController: UIViewController {
     
     func randomGroups() {
         
-        let shared = GroupStages.shared
+        
         
         //Rastgele gruplara Ayrılacak!
         teams.shuffle()
@@ -730,6 +1085,223 @@ class FixtureViewController: UIViewController {
         
         shared.groupAfirstSecond.append(groupA[0])
         shared.groupAfirstSecond.append(groupA[1])
+        
+        
+    }
+    
+    func teamsWhichPassTheGroupStage() {
+        
+        var MyPoints = controlsPoinsAndAverages.myTeanPoints // 1.sıra
+        var team1Points = controlsPoinsAndAverages.team1Points //4.sıra
+        var team2Points = controlsPoinsAndAverages.team2Points // 3.sıra
+        var team3Poinst = controlsPoinsAndAverages.team3Points // 2.sıra
+        
+        var MyAverage = controlsPoinsAndAverages.MyteamAverages // 1.sıra
+        var team1Average = controlsPoinsAndAverages.team1Averages //4.sıra
+        var team2Average = controlsPoinsAndAverages.team2Averages // 3.sıra
+        var team3Average = controlsPoinsAndAverages.team3Averages // 2.sıra
+    
+        var RealPointsArray = [MyPoints,team1Points,team2Points,team3Poinst]
+        var pointsArray = Set([MyPoints,team1Points,team2Points,team3Poinst])
+        
+        var RealAveragesArray = [MyAverage,team1Average,team2Average,team3Average]
+        var AveragesArray = Set([MyAverage,team1Average,team2Average,team3Average])
+        
+        if pointsArray.count == 4 {
+            print("HERKESİN PUANI FARKLI")
+            //Herkesin puanı birbirinden farklı averaj önemsiz, en iyi ikiliyi al
+            var firstPositionPoint = pointsArray.max()!
+            pointsArray.remove(firstPositionPoint)
+            var secondPositionPoint = pointsArray.max()!
+            // ilk 2 elemanı aldık!
+            //Bunları hangi takımlar olduğunu anlamamz lazım
+            var takimIndex = 0
+            for i in RealPointsArray {
+                
+                if i == firstPositionPoint {
+                    
+                    if takimIndex == 0 {
+                        //1.benim
+                        if myGroup == "A Grubu" {
+                            groupStages.groupAfirstSecond.append(myTeam)
+                            
+                        }else if myGroup == "B Grubu" {
+                            groupStages.groupBfirstSecond.append(myTeam)
+                            
+                        }else if myGroup == "C Grubu" {
+                            groupStages.groupCfirstSecond.append(myTeam)
+                            
+                        }else if myGroup == "D Grubu" {
+                            groupStages.groupDfirstSecond.append(myTeam)
+                        }
+                        
+                    }else if takimIndex == 1 {
+                        //1. team1 == match1 == 4.sıra
+                        if myGroup == "A Grubu" {
+                            groupStages.groupAfirstSecond.append(match1Array[1])
+                            
+                        }else if myGroup == "B Grubu" {
+                            groupStages.groupBfirstSecond.append(match1Array[1])
+                            
+                        }else if myGroup == "C Grubu" {
+                            groupStages.groupCfirstSecond.append(match1Array[1])
+                            
+                        }else if myGroup == "D Grubu" {
+                            groupStages.groupDfirstSecond.append(match1Array[1])
+                        }
+                        
+                    }else if takimIndex == 2 {
+                        //1. team2 == match2 == 3.sıra
+                        if myGroup == "A Grubu" {
+                            groupStages.groupAfirstSecond.append(match2Array[1])
+                            
+                        }else if myGroup == "B Grubu" {
+                            groupStages.groupBfirstSecond.append(match2Array[1])
+                            
+                        }else if myGroup == "C Grubu" {
+                            groupStages.groupCfirstSecond.append(match2Array[1])
+                            
+                        }else if myGroup == "D Grubu" {
+                            groupStages.groupDfirstSecond.append(match2Array[1])
+                        }
+                    }else if takimIndex == 3 {
+                        //1. team3 == match3 == 2.sıra
+                        if myGroup == "A Grubu" {
+                            groupStages.groupAfirstSecond.append(match3Array[1])
+                            
+                        }else if myGroup == "B Grubu" {
+                            groupStages.groupBfirstSecond.append(match3Array[1])
+                            
+                        }else if myGroup == "C Grubu" {
+                            groupStages.groupCfirstSecond.append(match3Array[1])
+                            
+                        }else if myGroup == "D Grubu" {
+                            groupStages.groupDfirstSecond.append(match3Array[1])
+                        }
+                    }
+                    
+                    print(groupStages.groupAfirstSecond)
+                    print(groupStages.groupBfirstSecond)
+                    print(groupStages.groupCfirstSecond)
+                    print(groupStages.groupDfirstSecond)
+                }else {
+                    takimIndex += 1
+                }
+               
+                
+            }
+            var takim2Index = 0
+            for i in RealPointsArray {
+                if i == secondPositionPoint {
+                    
+                    if takim2Index == 0 {
+                        //2.benim
+                        if myGroup == "A Grubu" {
+                            groupStages.groupAfirstSecond.append(myTeam)
+                            
+                        }else if myGroup == "B Grubu" {
+                            groupStages.groupBfirstSecond.append(myTeam)
+                            
+                        }else if myGroup == "C Grubu" {
+                            groupStages.groupCfirstSecond.append(myTeam)
+                            
+                        }else if myGroup == "D Grubu" {
+                            groupStages.groupDfirstSecond.append(myTeam)
+                        }
+                        
+                    }else if takim2Index == 1 {
+                        //2. team1 == match1 == 4.sıra
+                        if myGroup == "A Grubu" {
+                            groupStages.groupAfirstSecond.append(match1Array[1])
+                            
+                        }else if myGroup == "B Grubu" {
+                            groupStages.groupBfirstSecond.append(match1Array[1])
+                            
+                        }else if myGroup == "C Grubu" {
+                            groupStages.groupCfirstSecond.append(match1Array[1])
+                            
+                        }else if myGroup == "D Grubu" {
+                            groupStages.groupDfirstSecond.append(match1Array[1])
+                        }
+                        
+                    }else if takim2Index == 2 {
+                        //2. team2 == match2 == 3.sıra
+                        if myGroup == "A Grubu" {
+                            groupStages.groupAfirstSecond.append(match2Array[1])
+                            
+                        }else if myGroup == "B Grubu" {
+                            groupStages.groupBfirstSecond.append(match2Array[1])
+                            
+                        }else if myGroup == "C Grubu" {
+                            groupStages.groupCfirstSecond.append(match2Array[1])
+                            
+                        }else if myGroup == "D Grubu" {
+                            groupStages.groupDfirstSecond.append(match2Array[1])
+                        }
+                    }else if takim2Index == 3 {
+                        //2. team3 == match3 == 2.sıra
+                        if myGroup == "A Grubu" {
+                            groupStages.groupAfirstSecond.append(match3Array[1])
+                            
+                        }else if myGroup == "B Grubu" {
+                            groupStages.groupBfirstSecond.append(match3Array[1])
+                            
+                        }else if myGroup == "C Grubu" {
+                            groupStages.groupCfirstSecond.append(match3Array[1])
+                            
+                        }else if myGroup == "D Grubu" {
+                            groupStages.groupDfirstSecond.append(match3Array[1])
+                        }
+                    }
+                }else {
+                    takim2Index += 1
+                }
+                
+            }
+            
+        
+            //GroupStageden firstSecond'a yollamamız lazım!
+            
+        
+//
+//            if myGroup == "A Grubu" {
+//
+//                groupStages.groupAfirstSecond.append(firstPosition) //1. olan 0. indeks!
+//                groupStages.groupAfirstSecond.append(secondPosition)
+//
+//            }else if myGroup == "B Grubu" {
+//
+//                groupStages.groupBfirstSecond.append(firstPosition)
+//                groupStages.groupBfirstSecond.append(secondPosition)
+//
+//            }else if myGroup == "C Grubu" {
+//
+//                groupStages.groupCfirstSecond.append(firstPosition)
+//                groupStages.groupCfirstSecond.append(secondPosition)
+//
+//            }else if myGroup == "D Grubu" {
+//
+//                groupStages.groupDfirstSecond.append(firstPosition)
+//                groupStages.groupDfirstSecond.append(secondPosition)
+//
+//            }
+            //Bizim grubumuz haricindekiler zaten belirlendi!
+            
+        }else if pointsArray.count == 3 {
+            //AYNI PUANA SAHİP 2 TAKIM VAR
+            print("AYNI PUANA SAHİP 2 TAKIM VAR")
+            
+        }else if pointsArray.count == 2 {
+            //AYNI PUANA SAHİP 3 TAKIM VAR
+            //Veya 2ye 2
+            print("AYNI PUANA SAHİP 3 TAKIM VEYA 2YE2")
+           
+            
+        }else if pointsArray.count == 1 {
+            //HERKES AYNI PUANA SAHİP
+            print("AYNI PUANA SAHİP 4 TAKIM VAR")
+            
+        }
         
         
     }
